@@ -1,8 +1,10 @@
 package com.example.showmethemoneyproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import com.example.showmethemoneyproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,5 +28,13 @@ class MainActivity : AppCompatActivity() {
             binding.startImage3.visibility = View.INVISIBLE
             binding.startImage1.visibility = View.VISIBLE
         }
+
+        // 각 사진 전환 시 밑에 동그라미 색 변환되는 것도 해야 함 ...ㅎ
+
+        val intent1 = Intent(this, JoinActivity::class.java)
+        binding.starting1.setOnClickListener{startActivity(intent1)}
+
+        val intent2 = Intent(this, LoginActivity::class.java)
+        binding.goToLogin.setOnClickListener{startActivity(intent2)}
     }
 }

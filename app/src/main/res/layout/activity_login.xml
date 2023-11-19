@@ -70,6 +70,7 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/goToJoin"
             android:text="회원가입"
             android:textSize="17dp"
             android:textColor="@color/blue"
