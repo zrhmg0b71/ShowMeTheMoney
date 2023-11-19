@@ -107,6 +107,7 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/goToLogin"
             android:text="로그인"
             android:textStyle="italic"
             android:textSize="17dp"
