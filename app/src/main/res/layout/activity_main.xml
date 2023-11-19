@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 온보딩 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/lightPurple"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/startImage_1"
+            android:src="@drawable/start_1"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:visibility="visible"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/startImage_2"
+            android:src="@drawable/start_2"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:visibility="invisible"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/startImage_3"
+            android:src="@drawable/start_3"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:visibility="invisible"
+            android:clickable="true" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/startImageSelect1"
+            android:background="@drawable/circle_button_blue"
+            android:layout_marginRight="40dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+
+        <Button
+            android:id="@+id/startImageSelect2"
+            android:background="@drawable/circle_button_gray"
+            android:layout_marginRight="40dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+
+        <Button
+            android:id="@+id/startImageSelect3"
+            android:background="@drawable/circle_button_gray"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:text="달력을 확인해보세요!"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:id="@+id/starting1"
+        android:text="시작하기"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:background="@drawable/curved_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:text="이미 회원 가입을 했다면? "
+            android:textSize="17dp"
+            android:textColor="@color/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="로그인"
+            android:textStyle="italic"
+            android:textSize="17dp"
+            android:textColor="@color/blue"
+            android:background="#00ff0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
