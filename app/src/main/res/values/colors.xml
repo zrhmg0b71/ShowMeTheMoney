@@ -5,4 +5,8 @@
     <color name="lightPurple">#f2f1ff</color>
     <color name="blue">#5041ff</color>
     <color name="gray">#d9d9d9</color>
+    <color name="darkGray">#888888</color>
+    <color name="purple">#B6B3FF</color>
+    <color name="lightRed">#FED5D3</color>
+    <color name="hazyBlue">#B0BFE8</color>
 </resources>
