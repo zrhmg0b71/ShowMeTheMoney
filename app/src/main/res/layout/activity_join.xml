@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이름"
@@ -44,7 +45,8 @@
             android:id="@+id/passwordArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호"
+            android:hint="비밀번호(6자 이상)"
+            android:inputType="textPassword"
             android:textColor="@color/blue"
             android:backgroundTint="@color/blue"
             android:layout_marginTop="10dp"
@@ -58,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 확인"
+            android:inputType="textPassword"
             android:textColor="@color/blue"
             android:backgroundTint="@color/blue"
             android:layout_marginTop="10dp"
@@ -67,6 +70,7 @@
             android:paddingBottom="15dp" />
 
         <EditText
+            android:id="@+id/userPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="휴대전화번호 ('-' 제외)"
@@ -91,7 +95,7 @@
             android:paddingBottom="15dp" />
 
         <EditText
-            android:id="@+id/birth"
+            android:id="@+id/userBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="생년월일 (8자리 입력)"

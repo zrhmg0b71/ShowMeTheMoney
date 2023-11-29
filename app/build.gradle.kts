@@ -48,8 +48,11 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-analytics")
 
-    //로그인/회원가입 권한
+    //로그인/회원가입 SDK
     implementation("com.google.firebase:firebase-auth-ktx")
+
+    //데이터베이스 SDK
+    implementation("com.google.firebase:firebase-database-ktx")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
