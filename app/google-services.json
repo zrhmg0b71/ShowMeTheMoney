@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "858646781668",
+    "project_id": "showmethemoney-212cd",
+    "storage_bucket": "showmethemoney-212cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858646781668:android:4a861208581c72becf56f1",
+        "android_client_info": {
+          "package_name": "com.example.showmethemoneyproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMEmDK_qtBt0ilCUObeaxWaDJ4XkJpCzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
