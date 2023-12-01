@@ -6,4 +6,18 @@
     <color name="purple">#b6b3ff</color>
     <color name="blue">#5041ff</color>
     <color name="gray">#d9d9d9</color>
+    <color name="Purple">#B6B3FF</color>
+    <color name="darkGray">#888888</color>
+    <color name="lightRed">#FED5D3</color>
+    <color name="hazyBlue">#B0BFE8</color>
+    <!-- 차트 색상표 -->
+    <color name="chart_blue">#92C6FF</color>
+    <color name="chart_green">#80FF94</color>
+    <color name="chart_red">#FF808F</color>
+    <color name="chart_pink">#FF80EB</color>
+    <color name="chart_orange">#FFCC80</color>
+    <color name="chart_purple">#CC99FF</color>
+    <color name="chart_gray">#CCCCCC</color>
+    <color name="chart_yellow">#FFFF99</color>
+    <color name="chart_sky_blue">#99FFFF</color>
 </resources>

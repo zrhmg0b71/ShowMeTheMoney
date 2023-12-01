@@ -13,10 +13,26 @@
         android:theme="@style/Theme.ShowMeTheMoneyProject"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".ListViewAdapter"
             android:exported="false" />
         <activity
             android:name=".FirstpageActivity"
+=======
+            android:name=".SetUpGoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage"
+            android:exported="false" />
+        <activity
+            android:name=".InputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonthSpendActivity"
+>>>>>>> f78aa67797154d1e03c6ab1d11193852609013e1
             android:exported="false" />
         <activity
             android:name=".JoinActivity"
