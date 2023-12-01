@@ -11,7 +11,8 @@ class LoginActivity : AppCompatActivity() {
         val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent1 = Intent(this, JoinActivity::class.java)
+        // val intent1 = Intent(this, JoinActivity::class.java)
+        val intent1 = Intent(this, SetUpGoalActivity::class.java)
         val intent2 = Intent(this, MonthSpendActivity::class.java)
         binding.goToJoin.setOnClickListener{startActivity(intent1)}
         binding.starting2.setOnClickListener{startActivity(intent2)}
