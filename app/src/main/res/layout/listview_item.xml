@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/whenUsed"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/whenUsed"
+            android:text="사용 시간"
+            android:textSize="12sp"
+            android:textColor="@color/purple"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/whereUsed"
+            android:text="사용 내역 텍스트"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/usage"
+            android:text="- 0원"
+            android:textSize="15sp"
+            android:textColor="#FF0000"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/howUsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#사용 수단"
+        android:textColor="@color/purple"
+        android:textSize="12sp"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="88dp" />
+
+
+
+</LinearLayout>

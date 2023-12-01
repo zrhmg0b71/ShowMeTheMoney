@@ -30,6 +30,9 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_LONG).show()
 
+                        val intent2 = Intent(this, FirstpageActivity::class.java)
+                        startActivity(intent2)
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(this, "로그인 실패", Toast.LENGTH_LONG).show()
