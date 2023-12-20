@@ -85,7 +85,6 @@ class FirstpageActivity : AppCompatActivity() {
 
         binding.navigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.footer_home -> startActivity(intentFirstPage)
                 R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
                 R.id.footer_calendar-> startActivity(intentMonthSpendPage)
                 R.id.footer_mypage -> startActivity(intentMyPage)

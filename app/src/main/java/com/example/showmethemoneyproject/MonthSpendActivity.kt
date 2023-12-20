@@ -88,6 +88,19 @@ class MonthSpendActivity : AppCompatActivity() {
             animateY(1400, Easing.EaseInOutQuad)
             animate()
         }
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+
+        binding.navigationView.setOnItemReselectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_home -> startActivity(intentFirstPage)
+                R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
+        }
     }
 
 //    private fun setupTextWatchers() {
