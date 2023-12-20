@@ -90,7 +90,8 @@
             android:textSize="17dp" />
 
         <Button
-            android:text="비밀번호 찾기"
+            android:id="@+id/searchId"
+            android:text="아이디 찾기"
             android:textSize="17dp"
             android:textColor="@color/blue"
             android:background="#00ff0000"
@@ -107,7 +108,8 @@
             android:textSize="17dp" />
 
         <Button
-            android:text="로그인 문의"
+            android:id="@+id/searchPassword"
+            android:text="비밀번호 찾기"
             android:textSize="17dp"
             android:textColor="@color/blue"
             android:background="#00ff0000"
