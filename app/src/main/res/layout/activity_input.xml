@@ -67,13 +67,14 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="4"
-        android:background="@drawable/cardshape">
+        android:background="@drawable/cardshape2">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,8 +114,9 @@
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/food"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -126,17 +128,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 교통 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -182,13 +185,13 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 교육 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -212,13 +215,14 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/edu"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -230,17 +234,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 방세 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -264,13 +269,14 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/home"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -282,17 +288,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 저축 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -316,13 +323,14 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/saving"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -334,17 +342,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 취미, 여가, 쇼 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -368,13 +377,14 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/hobby"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -386,17 +396,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 카페, 간식 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -420,16 +431,17 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/cafe"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
+                            android:layout_weight="1"
                             android:background="@drawable/square_background"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -438,17 +450,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 이체 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -472,13 +485,14 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/account"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
@@ -490,17 +504,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <!-- 기타 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
@@ -524,16 +539,17 @@
                             android:gravity="end"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/etc"
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="0"
                             android:inputType="numberDecimal"
                             android:layout_marginBottom="16dp"
+                            android:layout_weight="1"
                             android:background="@drawable/square_background"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -542,11 +558,12 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
-                            android:paddingLeft="3dp"/>
+                            android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -556,7 +573,7 @@
         </ScrollView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
@@ -565,24 +582,24 @@
             android:layout_gravity="bottom">
             <android.widget.Button
                 android:id="@+id/cancel"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="취소"
                 android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/cancel_btn"
                 android:textColor="#ff0000"
                 android:paddingRight="10dp"/>
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
             <android.widget.Button
                 android:id="@+id/accept"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:background="@drawable/accept_btn"
                 android:text="확인"
                 android:textStyle="bold"
+                android:layout_marginLeft="5dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
