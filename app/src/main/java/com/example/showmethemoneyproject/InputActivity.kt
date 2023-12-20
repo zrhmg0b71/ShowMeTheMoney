@@ -13,20 +13,23 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 import java.util.Locale
 
 class InputActivity : AppCompatActivity() {
-    private var foodbalance = 800000
-    private var carbalance = 800000
-    private var edubalance = 800000
-    private var homebalance = 800000
-    private var savingbalance = 800000
-    private var hobbybalance = 800000
-    private var cafebalance = 800000
-    private var accountbalance = 800000
-    private var etcbalance = 800000
 
+    private lateinit var auth: FirebaseAuth
+
+    private var foodbalance = 0
+    private var carbalance = 0
+    private var edubalance = 0
+    private var homebalance = 0
+    private var savingbalance = 0
+    private var hobbybalance = 0
+    private var cafebalance = 0
+    private var accountbalance = 0
+    private var etcbalance = 0
 
     private lateinit var foodEditText: EditText
     private lateinit var carEditText: EditText
@@ -37,6 +40,7 @@ class InputActivity : AppCompatActivity() {
     private lateinit var cafeEditText: EditText
     private lateinit var accountEditText: EditText
     private lateinit var etcEditText: EditText
+
     private lateinit var calculationFoodTextView: TextView
     private lateinit var calculationCarTextView: TextView
     private lateinit var calculationEduTextView: TextView
@@ -62,6 +66,7 @@ class InputActivity : AppCompatActivity() {
         cafeEditText = findViewById(R.id.cafe)
         accountEditText = findViewById(R.id.account)
         etcEditText = findViewById(R.id.etc)
+
         calculationFoodTextView = findViewById(R.id.calculateFood)
         calculationCarTextView = findViewById(R.id.calculateCar)
         calculationEduTextView = findViewById(R.id.calculateEdu)

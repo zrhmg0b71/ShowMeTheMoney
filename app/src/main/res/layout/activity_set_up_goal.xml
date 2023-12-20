@@ -518,7 +518,7 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:layout_gravity="bottom">
-            <android.widget.Button
+            <Button
                 android:id="@+id/cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -529,7 +529,7 @@
                 android:background="@drawable/cancel_btn"
                 android:textColor="#ff0000"
                 android:paddingRight="10dp"/>
-            <android.widget.Button
+            <Button
                 android:id="@+id/accept"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
