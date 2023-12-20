@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/goToSavingPlan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -142,8 +143,8 @@
         </LinearLayout>
 
 
-
         <LinearLayout
+            android:id="@+id/goToMonthly"
             android:layout_width="match_parent"
             android:layout_height="315dp"
             android:background="@drawable/background_rectangle"
