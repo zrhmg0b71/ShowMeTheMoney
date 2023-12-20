@@ -10,64 +10,34 @@
     android:background="@color/lightPurple"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/startImage_1"
-            android:src="@drawable/start_1"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:visibility="visible"
-            android:clickable="true" />
-
-        <ImageView
-            android:id="@+id/startImage_2"
-            android:src="@drawable/start_2"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:visibility="invisible"
-            android:clickable="true" />
-
-        <ImageView
-            android:id="@+id/startImage_3"
-            android:src="@drawable/start_3"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:visibility="invisible"
-            android:clickable="true" />
-
-    </FrameLayout>
-
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp">
-
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center">
         <Button
             android:id="@+id/startImageSelect1"
             android:background="@drawable/circle_button_blue"
             android:layout_marginRight="40dp"
             android:layout_width="18dp"
             android:layout_height="18dp" />
-
         <Button
             android:id="@+id/startImageSelect2"
             android:background="@drawable/circle_button_gray"
             android:layout_marginRight="40dp"
             android:layout_width="18dp"
             android:layout_height="18dp" />
-
         <Button
             android:id="@+id/startImageSelect3"
             android:background="@drawable/circle_button_gray"
             android:layout_width="18dp"
             android:layout_height="18dp" />
-
     </LinearLayout>
-
 
     <TextView
         android:text="달력을 확인해보세요!"
