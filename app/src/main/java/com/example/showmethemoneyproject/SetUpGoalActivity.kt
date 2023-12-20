@@ -58,6 +58,7 @@ class SetUpGoalActivity : AppCompatActivity() {
         val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
         val intentMyPage = Intent(this, MyPageActivity::class.java)
 
+        binding.navigationView.selectedItemId = R.id.footer_wallet
         binding.navigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.footer_home -> startActivity(intentFirstPage)

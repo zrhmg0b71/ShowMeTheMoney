@@ -92,7 +92,7 @@ class MonthSpendActivity : AppCompatActivity() {
         val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
         val intentMyPage = Intent(this, MyPageActivity::class.java)
 
-
+        binding.navigationView.selectedItemId = R.id.footer_calendar
         binding.navigationView.setOnItemReselectedListener { item ->
             when(item.itemId) {
                 R.id.footer_home -> startActivity(intentFirstPage)
