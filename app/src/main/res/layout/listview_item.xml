@@ -6,9 +6,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/whenUsed"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -29,28 +30,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <TextView
             android:id="@+id/usage"
             android:text="- 0원"
             android:textSize="15sp"
             android:textColor="#FF0000"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/howUsed"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="#사용 수단"
         android:textColor="@color/purple"
         android:textSize="12sp"
         android:layout_marginTop="1dp"
-        android:layout_marginLeft="88dp" />
-
+        android:layout_marginLeft="88dp"
+        android:layout_marginBottom="10dp"/>
 
 
 </LinearLayout>
+

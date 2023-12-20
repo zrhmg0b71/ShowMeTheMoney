@@ -10,15 +10,21 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import java.util.Calendar
 import android.app.AlertDialog
+import android.content.Intent
 import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivitySetUpGoalBinding
 
 class SetUpGoalActivity : AppCompatActivity() {
     private var balance = 800000
     private lateinit var foodEditText: EditText
+    private lateinit var carEditText: EditText
+    private lateinit var eduEditText: EditText
     private lateinit var homeEditText: EditText
-    private lateinit var studyEditText: EditText
-    private lateinit var saveEditText: EditText
+    private lateinit var savingEditText: EditText
+    private lateinit var hobbyEditText: EditText
+    private lateinit var cafeEditText: EditText
+    private lateinit var accountEditText: EditText
+    private lateinit var etcEditText: EditText
     private lateinit var calculationResultTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +34,14 @@ class SetUpGoalActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         foodEditText = findViewById(R.id.food)
+        carEditText = findViewById(R.id.car)
+        eduEditText = findViewById(R.id.edu)
         homeEditText = findViewById(R.id.home)
-        studyEditText = findViewById(R.id.study)
-        saveEditText= findViewById(R.id.save)
+        savingEditText = findViewById(R.id.saving)
+        hobbyEditText = findViewById(R.id.hobby)
+        cafeEditText = findViewById(R.id.cafe)
+        accountEditText = findViewById(R.id.account)
+        etcEditText = findViewById(R.id.etc)
         calculationResultTextView = findViewById(R.id.calculateResult)
 
         setupTextWatchers()
@@ -42,9 +53,24 @@ class SetUpGoalActivity : AppCompatActivity() {
                 binding.setmonth.text = DateFormatSymbols().months[month-1]
             }
         }
+
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        binding.navigationView.selectedItemId = R.id.footer_wallet
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_home -> startActivity(intentFirstPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
+        }
     }
     private fun setupTextWatchers() {
-        val editTextList = listOf(foodEditText, homeEditText, studyEditText, saveEditText)
+        val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
+            savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
 
         for (editText in editTextList) {
             editText.addTextChangedListener(object : TextWatcher {
@@ -66,12 +92,18 @@ class SetUpGoalActivity : AppCompatActivity() {
     }
     private fun updateResult() {
         val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
+        val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
+        val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
         val homeCost: Int = if (homeEditText.text.isNotEmpty()) homeEditText.text.toString().toInt() else 0
-        val studyCost: Int = if (studyEditText.text.isNotEmpty()) studyEditText.text.toString().toInt() else 0
-        val saveCost: Int = if (saveEditText.text.isNotEmpty()) saveEditText.text.toString().toInt() else 0
+        val savingCost: Int = if (savingEditText.text.isNotEmpty()) savingEditText.text.toString().toInt() else 0
+        val hobbyCost: Int = if (hobbyEditText.text.isNotEmpty()) hobbyEditText.text.toString().toInt() else 0
+        val cafeCost: Int = if (cafeEditText.text.isNotEmpty()) cafeEditText.text.toString().toInt() else 0
+        val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
+        val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
 
         // 각 항목의 비용을 더해 잔액에서 차감
-        balance = 800000 - (foodCost + homeCost + studyCost + saveCost)
+        balance = 800000 - (foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost
+                + cafeCost + accountCost + etcCost)
         if(balance <0){
             Toast.makeText(this, "잔액이 부족합니다.", Toast.LENGTH_LONG).show()
         }
@@ -117,4 +149,5 @@ class SetUpGoalActivity : AppCompatActivity() {
         // 다이얼로그 보여주기
         dialog.show()
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.showmethemoneyproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -76,5 +77,22 @@ class FirstpageActivity : AppCompatActivity() {
 //            }
 //
 //        })
+
+        val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        val intentInputPage = Intent(this, InputActivity::class.java)
+        binding.goToInput.setOnClickListener{startActivity(intentInputPage)}
+
+        binding.navigationView.selectedItemId = R.id.footer_home
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
+        }
     }
 }
