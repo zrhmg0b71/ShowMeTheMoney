@@ -86,10 +86,12 @@ class FirstpageActivity : AppCompatActivity() {
         binding.goToInput.setOnClickListener{startActivity(intentInputPage)}
 
         val intentSavingPlanPage = Intent(this, SavingPlanActivity::class.java)
-        binding.goToSavingPlan.setOnClickListener{startActivity(intentSavingPlanPage)}
+        binding.today.setOnClickListener{startActivity(intentSavingPlanPage)}
 
         val intentMonthlyPage = Intent(this, MonthlyActivity::class.java)
-        binding.goToMonthly.setOnClickListener{startActivity(intentMonthlyPage)}
+//        binding.goToMonthly.setOnClickListener{startActivity(intentMonthlyPage)}
+//        binding.usageList.setOnClickListener{startActivity(intentMonthlyPage)}
+        binding.goToMonthly2.setOnClickListener{startActivity(intentMonthlyPage)}
 
         binding.navigationView.selectedItemId = R.id.footer_home
         binding.navigationView.setOnItemSelectedListener { item ->
