@@ -53,6 +53,8 @@ dependencies {
 
     //데이터베이스 SDK
     implementation("com.google.firebase:firebase-database-ktx")
+    //달력
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.1")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

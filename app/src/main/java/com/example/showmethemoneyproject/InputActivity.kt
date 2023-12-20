@@ -2,34 +2,36 @@ package com.example.showmethemoneyproject
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.icu.text.DateFormatSymbols
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.inputmethod.InputBinding
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
-import com.google.firebase.auth.FirebaseAuth
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
 class InputActivity : AppCompatActivity() {
+    private var foodbalance = 800000
+    private var carbalance = 800000
+    private var edubalance = 800000
+    private var homebalance = 800000
+    private var savingbalance = 800000
+    private var hobbybalance = 800000
+    private var cafebalance = 800000
+    private var accountbalance = 800000
+    private var etcbalance = 800000
 
-    private lateinit var auth: FirebaseAuth
-
-    private var foodbalance = 0
-    private var carbalance = 0
-    private var edubalance = 0
-    private var homebalance = 0
-    private var savingbalance = 0
-    private var hobbybalance = 0
-    private var cafebalance = 0
-    private var accountbalance = 0
-    private var etcbalance = 0
 
     private lateinit var foodEditText: EditText
     private lateinit var carEditText: EditText
@@ -40,7 +42,24 @@ class InputActivity : AppCompatActivity() {
     private lateinit var cafeEditText: EditText
     private lateinit var accountEditText: EditText
     private lateinit var etcEditText: EditText
-
+    private lateinit var foodPlaceEditText: EditText
+    private lateinit var carPlaceEditText: EditText
+    private lateinit var eduPlaceEditText: EditText
+    private lateinit var homePlaceEditText: EditText
+    private lateinit var savingPlaceEditText: EditText
+    private lateinit var hobbyPlaceEditText: EditText
+    private lateinit var cafePlaceEditText: EditText
+    private lateinit var accountPlaceEditText: EditText
+    private lateinit var etcPlaceEditText: EditText
+    private lateinit var foodPayEditText: EditText
+    private lateinit var carPayEditText: EditText
+    private lateinit var eduPayEditText: EditText
+    private lateinit var homePayEditText: EditText
+    private lateinit var savingPayEditText: EditText
+    private lateinit var hobbyPayEditText: EditText
+    private lateinit var cafePayEditText: EditText
+    private lateinit var accountPayEditText: EditText
+    private lateinit var etcPayEditText: EditText
     private lateinit var calculationFoodTextView: TextView
     private lateinit var calculationCarTextView: TextView
     private lateinit var calculationEduTextView: TextView
@@ -66,7 +85,24 @@ class InputActivity : AppCompatActivity() {
         cafeEditText = findViewById(R.id.cafe)
         accountEditText = findViewById(R.id.account)
         etcEditText = findViewById(R.id.etc)
-
+        foodPlaceEditText = findViewById(R.id.foodPlace)
+        carPlaceEditText = findViewById(R.id.carPlace)
+        eduPlaceEditText = findViewById(R.id.eduPlace)
+        homePlaceEditText = findViewById(R.id.homePlace)
+        savingPlaceEditText = findViewById(R.id.savingPlace)
+        hobbyPlaceEditText = findViewById(R.id.hobbyPlace)
+        cafePlaceEditText = findViewById(R.id.cafePlace)
+        accountPlaceEditText = findViewById(R.id.accountPlace)
+        etcPlaceEditText = findViewById(R.id.etcPlace)
+        foodPayEditText = findViewById(R.id.food)
+        carPayEditText = findViewById(R.id.car)
+        eduPayEditText = findViewById(R.id.eduPay)
+        homePayEditText = findViewById(R.id.homePay)
+        savingPayEditText = findViewById(R.id.savingPay)
+        hobbyPayEditText = findViewById(R.id.hobbyPay)
+        cafePayEditText = findViewById(R.id.cafePay)
+        accountPayEditText = findViewById(R.id.accountPay)
+        etcPayEditText = findViewById(R.id.etcPay)
         calculationFoodTextView = findViewById(R.id.calculateFood)
         calculationCarTextView = findViewById(R.id.calculateCar)
         calculationEduTextView = findViewById(R.id.calculateEdu)
@@ -80,14 +116,49 @@ class InputActivity : AppCompatActivity() {
         setupTextWatchers()
         updateResult()
 
+        // DB에 currentTime 변수명으로 현재 시간 가져가시면 됩니다.
+        var currentTime = getCurrentTime()
+
         binding.calendarBtn.setOnClickListener {
             showDatePickerDialog { year, month, dayOfMonth ->
                 binding.setyear.text = year.toString()
-                binding.setmonth.text = DateFormatSymbols().months[month]
+                binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
             }
         }
+
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        binding.cancel.setOnClickListener{startActivity(intentFirstPage)}
+
+        binding.navigationView.selectedItemId = R.id.footer_home
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
+        }
     }
+
+    private fun getCurrentTime() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("HH:mm")
+            val formatted = current.format(formatter)
+            Log.d("timeTest","현재 시간은 : $formatted")
+        } else {
+            val current = Calendar.getInstance()
+            val hour = current.get(Calendar.HOUR_OF_DAY)
+            val minute = current.get(Calendar.MINUTE)
+            Log.d("timeTest","현재 시간은 : $hour:$minute")
+        }
+    }
+
     private fun setupTextWatchers() {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
             savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)

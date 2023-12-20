@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -95,12 +97,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
                             android:text="식비"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:paddingBottom="5dp"/>
                         <TextView
                             android:id="@+id/calculateFood"
+                            android:layout_weight="3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="잔액 800,000원"
@@ -108,20 +112,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/foodPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/foodPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/food"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -133,6 +194,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -162,29 +224,89 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/carPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/carPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/car"
-                            android:layout_width="300dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="10"
                             android:text="원"
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -214,20 +336,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/eduPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/eduPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/edu"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -239,6 +418,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -268,20 +448,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/homePlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/homePay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/home"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -293,6 +530,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -322,20 +560,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/savingPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/savingPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/saving"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -347,6 +642,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -376,20 +672,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/hobbyPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/hobbyPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/hobby"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -401,6 +754,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -430,20 +784,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/cafePlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/cafePay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/cafe"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -455,6 +866,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -471,7 +883,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="카페•간식"
+                            android:text="이체"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:paddingBottom="5dp"/>
@@ -484,20 +896,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/accountPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/accountPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/account"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -509,6 +978,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -538,20 +1008,77 @@
                             android:textColor="@color/darkGray"
                             android:gravity="end"/>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/etcPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="사용처"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/square_background"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <EditText
+                                android:id="@+id/etcPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:hint="결제 수단"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:paddingTop="8dp"
+                                android:textSize="17sp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="20dp"
+                                android:gravity="left"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/square_background"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
                         <EditText
                             android:id="@+id/etc"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:hint="0"
                             android:inputType="numberDecimal"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/square_background"
+                            android:background="@null"
                             android:paddingTop="8dp"
+                            android:textSize="17sp"
                             android:paddingBottom="8dp"
                             android:paddingRight="20dp"
                             android:gravity="right"/>
@@ -563,6 +1090,7 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             android:paddingLeft="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -604,5 +1132,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navi_menu" />
 
 </LinearLayout>
