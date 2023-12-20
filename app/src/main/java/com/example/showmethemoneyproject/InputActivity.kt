@@ -122,7 +122,7 @@ class InputActivity : AppCompatActivity() {
         binding.calendarBtn.setOnClickListener {
             showDatePickerDialog { year, month, dayOfMonth ->
                 binding.setyear.text = year.toString()
-                binding.setmonth.text = DateFormatSymbols().months[month]
+                binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
             }
         }

@@ -4,7 +4,522 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SavingPlanActivity">
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:background="@color/Purple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/calendarBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30sp"
+            android:src="@drawable/calendar"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/setyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2023"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30sp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/setmonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="December"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="30sp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 하단 -->
+    <LinearLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:background="@drawable/cardshape2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/white">
+
+
+
+                    </FrameLayout>
+
+                    <!-- 식비 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="식비"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/foodPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/foodTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 교통 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="교통"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/carPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/carTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 교육 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="교육"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/eduPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/eduTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 방세 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="방세"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/homePercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/homeTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 저축 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="저축"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/savingPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/savingTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 취미, 여가, 쇼핑 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="취미•여가•쇼핑"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/hobbyPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/hobbyTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 카페, 간식 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="카페•간식"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/cafePercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/cafeTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 이체 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="이체"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/accountPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/accountTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <!-- 기타 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="기타"
+                                android:textSize="15dp"
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/etcPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/etcTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="137,500"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"

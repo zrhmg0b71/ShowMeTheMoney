@@ -21,6 +21,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
 import java.util.Calendar
+import java.util.Locale
 
 class MonthSpendActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class MonthSpendActivity : AppCompatActivity() {
         binding.calendarBtn.setOnClickListener {
             showCustomDatePickerDialog { year, month ->
                 binding.setyear.text = year.toString()
-                binding.setmonth.text = DateFormatSymbols().months[month-1]
+                binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month-1]
             }
         }
 
