@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity() {
 
         // 각 사진 전환 시 밑에 동그라미 색 변환되는 것도 해야 함 ...ㅎ
 
-//        val intent1 = Intent(this, JoinActivity::class.java)
-//        binding.starting1.setOnClickListener{startActivity(intent1)}
-
-        val intent1 = Intent(this, MyPageActivity::class.java)
+        val intent1 = Intent(this, JoinActivity::class.java)
         binding.starting1.setOnClickListener{startActivity(intent1)}
+
+//        val intent1 = Intent(this, MyPageActivity::class.java)
+//        binding.starting1.setOnClickListener{startActivity(intent1)}
 
         val intent2 = Intent(this, LoginActivity::class.java)
         binding.goToLogin.setOnClickListener{startActivity(intent2)}
