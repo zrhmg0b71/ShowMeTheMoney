@@ -1,5 +1,6 @@
 package com.example.showmethemoneyproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,8 @@ class FirstpageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityFirstpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
@@ -76,5 +79,20 @@ class FirstpageActivity : AppCompatActivity() {
 //            }
 //
 //        })
+
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_home -> startActivity(intentFirstPage)
+                R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
+        }
     }
 }
