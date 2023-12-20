@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ShowMeTheMoneyProject"
         tools:targetApi="31">
         <activity
+            android:name=".SavingPlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonthlyActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListViewAdapter"
             android:exported="false" />
         <activity
