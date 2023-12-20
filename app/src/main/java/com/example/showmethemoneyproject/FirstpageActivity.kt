@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.example.showmethemoneyproject.databinding.ActivityFirstpageBinding
 import com.example.showmethemoneyproject.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -14,11 +16,16 @@ import com.google.firebase.ktx.Firebase
 
 class FirstpageActivity : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
+
     val usageDataList = mutableListOf<usageDataModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityFirstpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
 
 //        val database = Firebase.database
 //        val myRef = database.getReference("usageData")
@@ -38,10 +45,19 @@ class FirstpageActivity : AppCompatActivity() {
 
         listView.adapter = adapter_list
 
+        //DB에 입력된 유저 정보 저장
+        val database = Firebase.database
+        val userInfoRef = database.getReference("usageData")
+
         usageDataList.add(usageDataModel("09:00 AM", "스타벅스", "#카드", "-4500원"))
         usageDataList.add(usageDataModel("10:00 AM", "투썸플레이스", "#카드", "-5000원"))
         usageDataList.add(usageDataModel("11:00 AM", "할리스커피", "#카드", "-3500원"))
 
+        //DB가 JSON 트리 형식으로 되어 있음
+        //유저 정보를 담은 데이터 클래스를 현재 유저의 uid 아래에 setValue로 넣어주면 JSON형식으로 들어감
+        userInfoRef
+            .child(auth.currentUser!!.uid)  //setValue()는 추가가 아니라 갱신 방식이라 이거 빼먹으면 다른 유저 정보 날아갈 수 있으니 이거 꼭!!
+            .setValue(usageDataList)
 
 //        myRef.addValueEventListener(object : ValueEventListener {
 //            override fun onDataChange(snapshot: DataSnapshot) {  //데이터베이스에 있는 데이터들을 모두 snapshot이라는 변수에 저장
