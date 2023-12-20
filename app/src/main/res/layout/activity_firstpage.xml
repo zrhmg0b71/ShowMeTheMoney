@@ -1,187 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightPurple"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/today"
         android:layout_width="match_parent"
-        android:layout_height="205dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/background_rectangle"
-        android:elevation="4dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="25dp"
-            android:text="오늘의 사용 가능 금액"
-            android:textAppearance="@style/title"/>
-        
-        <TextView
-            android:id="@+id/availableAmount"
-            android:layout_width="121dp"
-            android:layout_height="31dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:text="0원"
-            android:textAppearance="@style/title"/>
-
         <LinearLayout
+            android:id="@+id/today"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_height="205dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/background_rectangle"
+            android:elevation="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="25dp"
+                android:text="오늘의 사용 가능 금액"
+                android:textAppearance="@style/title"/>
+
+            <TextView
+                android:id="@+id/availableAmount"
+                android:layout_width="121dp"
+                android:layout_height="31dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="0원"
+                android:textAppearance="@style/title"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
-                android:background="@drawable/frame_1"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_height="60dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:gravity="center_horizontal"
-                    android:text="오늘 총 지출"
-                    android:textAppearance="@style/content"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_height="59dp"
+                    android:background="@drawable/frame_1"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/todaysTotal"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:gravity="center_horizontal"
+                        android:text="오늘 총 지출"
+                        android:textAppearance="@style/content"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/todaysTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:gravity="center_horizontal"
+                        android:text="0원"
+                        android:textAppearance="@style/content"
+                        android:layout_marginTop="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:gravity="center_horizontal"
-                    android:text="0원"
-                    android:textAppearance="@style/content"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_height="59dp"
+                    android:background="@drawable/frame_2"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:gravity="center_horizontal"
+                        android:text="남은 사용가능금액"
+                        android:textAppearance="@style/content"
+                        android:layout_marginTop="10dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="59dp"
-                android:background="@drawable/frame_2"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/todaysRemain"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:gravity="center_horizontal"
+                        android:text="0원"
+                        android:textAppearance="@style/content"
+                        android:layout_marginTop="5dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:gravity="center_horizontal"
-                    android:text="남은 사용가능금액"
-                    android:textAppearance="@style/content"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:id="@+id/todaysRemain"
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:gravity="center_horizontal"
-                    android:text="0원"
-                    android:textAppearance="@style/content"
-                    android:layout_marginTop="5dp"/>
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="31dp"
+            android:layout_alignParentTop="true"
+            android:text="나의 거래내역"
+            android:textAppearance="@style/title"/>
 
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="31dp"
-        android:layout_alignParentTop="true"
-        android:text="나의 거래내역"
-        android:textAppearance="@style/title"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="315dp"
-        android:background="@drawable/background_rectangle"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_alignParentTop="true"
-        android:elevation="5dp">
-
-        <ListView
-            android:id="@+id/usageList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="315dp"
+            android:background="@drawable/background_rectangle"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentTop="true"
+            android:elevation="5dp">
 
+            <ListView
+                android:id="@+id/usageList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="60dp"
-        android:background="#FFFFFF">
-
-        <ImageView
-            android:id="@+id/footer_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/footer_home"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:id="@+id/footer_wallet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/footer_home"
-            android:src="@drawable/footer_wallet"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:id="@+id/footer_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/footer_wallet"
-            android:src="@drawable/footer_calendar"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:id="@+id/footer_mypage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/footer_mypage"
-            android:layout_toRightOf="@+id/footer_calendar"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navi_menu" />
 
 </LinearLayout>
