@@ -61,253 +61,531 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_weight="4"
         android:background="@drawable/cardshape">
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:layout_marginLeft="40sp">
+            android:layout_weight="1"
+            android:layout_marginTop="50dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="식비"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:paddingBottom="5dp"/>
-                    <TextView
-                        android:id="@+id/calculateFood"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="잔액 800,000원"
-                        android:textStyle="bold"
-                        android:textColor="@color/darkGray"
-                        android:gravity="end"/>
-                </LinearLayout>
+                android:orientation="vertical"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
+
+                <!-- 식비 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/food"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:hint="0"
-                        android:inputType="numberDecimal"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/square_background"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingRight="20dp"
-                        android:gravity="right"/>
-                    <TextView
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="원"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingTop="8dp"
-                        android:paddingLeft="3dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="식비"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateFood"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="방세"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:paddingBottom="5dp"/>
-                    <TextView
-                        android:id="@+id/calculateHome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="잔액 800,000원"
-                        android:textStyle="bold"
-                        android:textColor="@color/darkGray"
-                        android:gravity="end"/>
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/food"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- 교통 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/home"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:hint="0"
-                        android:inputType="numberDecimal"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/square_background"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingRight="20dp"
-                        android:gravity="right"/>
-                    <TextView
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="원"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingTop="8dp"
-                        android:paddingLeft="3dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="교통"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateCar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="학비"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:paddingBottom="5dp"/>
-                    <TextView
-                        android:id="@+id/calculateStudy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="잔액 800,000원"
-                        android:textStyle="bold"
-                        android:textColor="@color/darkGray"
-                        android:gravity="end"/>
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/car"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- 교육 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/study"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:hint="0"
-                        android:inputType="numberDecimal"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/square_background"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingRight="20dp"
-                        android:gravity="right"/>
-                    <TextView
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="원"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingTop="8dp"
-                        android:paddingLeft="3dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="교육"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateEdu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="저축"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:paddingBottom="5dp"/>
-                    <TextView
-                        android:id="@+id/calculateSavings"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="잔액 800,000원"
-                        android:textStyle="bold"
-                        android:textColor="@color/darkGray"
-                        android:gravity="end"/>
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edu"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- 방세 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/save"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:hint="0"
-                        android:inputType="numberDecimal"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/square_background"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingRight="20dp"
-                        android:gravity="right"/>
-                    <TextView
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="원"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:paddingTop="8dp"
-                        android:paddingLeft="3dp"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="방세"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateHome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/home"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- 저축 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="저축"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateSaving"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/saving"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 취미, 여가, 쇼 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="취미•여가•쇼핑"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateHobby"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/hobby"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 카페, 간식 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="카페•간식"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateCafe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/cafe"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 이체 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="카페•간식"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/account"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 기타 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="기타"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/calculateEtc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="잔액 800,000원"
+                            android:textStyle="bold"
+                            android:textColor="@color/darkGray"
+                            android:gravity="end"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/etc"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:inputType="numberDecimal"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/square_background"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="20dp"
+                            android:gravity="right"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="원"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+            <android.widget.Button
+                android:id="@+id/cancel"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="bottom">
-                <android.widget.Button
-                    android:id="@+id/cancel"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="취소"
-                    android:textStyle="bold"
-                    android:background="@drawable/cancel_btn"
-                    android:textColor="#ff0000"
-                    android:paddingRight="10dp"/>
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="1dp" />
-                <android.widget.Button
-                    android:id="@+id/accept"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/accept_btn"
-                    android:text="확인"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
+                android:text="취소"
+                android:textStyle="bold"
+                android:background="@drawable/cancel_btn"
+                android:textColor="#ff0000"
+                android:paddingRight="10dp"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <android.widget.Button
+                android:id="@+id/accept"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/accept_btn"
+                android:text="확인"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,9 +1,15 @@
 package com.example.showmethemoneyproject
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
+import android.icu.text.DateFormatSymbols
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat.animate
 import com.example.showmethemoneyproject.databinding.ActivityLoginBinding
@@ -14,6 +20,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
+import java.util.Calendar
 
 class MonthSpendActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +28,20 @@ class MonthSpendActivity : AppCompatActivity() {
         val binding = ActivityMonthSpendBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.monthChart.setUsePercentValues(true)
 
+//        setupTextWatchers()
+//        updateResult()
+
+        // 월 선택
+        binding.calendarBtn.setOnClickListener {
+            showCustomDatePickerDialog { year, month ->
+                binding.setyear.text = year.toString()
+                binding.setmonth.text = DateFormatSymbols().months[month-1]
+            }
+        }
+
+        // 이 아래부터 차트
+        binding.monthChart.setUsePercentValues(true)
 
         // data Set
         val entries = ArrayList<PieEntry>()
@@ -36,19 +55,6 @@ class MonthSpendActivity : AppCompatActivity() {
         entries.add(PieEntry(5f, "카페•간식"))
         entries.add(PieEntry(5f, "이체"))
         entries.add(PieEntry(5f, "기타"))
-
-        // add a lot of colors
-//        val colorsItems = ArrayList<Int>()
-//        for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-//        for (c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-//        colorsItems.add(ColorTemplate.getHoloBlue())
 
         val pieDataSet = PieDataSet(entries, "")
 
@@ -82,5 +88,66 @@ class MonthSpendActivity : AppCompatActivity() {
             animateY(1400, Easing.EaseInOutQuad)
             animate()
         }
+    }
+
+//    private fun setupTextWatchers() {
+//        val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
+//            savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
+//
+//        for (editText in editTextList) {
+//            editText.addTextChangedListener(object : TextWatcher {
+//                override fun beforeTextChanged(
+//                    s: CharSequence?,
+//                    start: Int,
+//                    count: Int,
+//                    after: Int
+//                ) {
+//                }
+//
+//                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//
+//                override fun afterTextChanged(s: Editable?) {
+//                    updateResult()
+//                }
+//            })
+//        }
+//    }
+
+    private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+
+        val dialogView = layoutInflater.inflate(R.layout.date_picker, null)
+        val yearPicker = dialogView.findViewById<NumberPicker>(R.id.yearPicker)
+        val monthPicker = dialogView.findViewById<NumberPicker>(R.id.monthPicker)
+
+        // yearPicker와 monthPicker를 초기화하고 설정
+        yearPicker.minValue = 1970
+        yearPicker.maxValue = 2100
+        yearPicker.value = year
+
+        monthPicker.minValue = 1
+        monthPicker.maxValue = 12
+        monthPicker.value = month
+
+        // 다이얼로그 생성
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Select Year and Month")
+            .setPositiveButton("OK") { _, _ ->
+                // OK 버튼을 눌렀을 때의 동작
+                val selectedYear = yearPicker.value
+                val selectedMonth = monthPicker.value
+                // 선택된 년과 월을 사용하여 원하는 동작 수행
+                callback.invoke(selectedYear,selectedMonth)
+            }
+            .setNegativeButton("Cancel") { _, _ ->
+                // Cancel 버튼을 눌렀을 때의 동작
+            }
+            .setView(dialogView)
+            .create()
+
+        // 다이얼로그 보여주기
+        dialog.show()
     }
 }

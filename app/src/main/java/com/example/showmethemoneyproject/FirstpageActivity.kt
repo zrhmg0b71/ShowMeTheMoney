@@ -25,8 +25,6 @@ class FirstpageActivity : AppCompatActivity() {
         val binding = ActivityFirstpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
 
