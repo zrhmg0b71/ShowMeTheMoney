@@ -3,19 +3,27 @@
     <item
         android:id="@+id/footer_home"
         android:title=""
-        android:icon="@drawable/footer_home"/>
+        android:icon="@drawable/footer_home"
+        android:enabled="true"
+        android:checked="true"/>
     <item
         android:id="@+id/footer_wallet"
         android:title=""
-        android:icon="@drawable/footer_wallet"/>
+        android:icon="@drawable/footer_wallet"
+        android:enabled="true"
+        android:checked="true"/>
     <item
         android:id="@+id/footer_calendar"
         android:title=""
-        android:icon="@drawable/footer_calendar"/>
+        android:icon="@drawable/footer_calendar"
+        android:enabled="true"
+        android:checked="true"/>
     <item
         android:id="@+id/footer_mypage"
         android:title=""
-        android:icon="@drawable/footer_mypage"/>
+        android:icon="@drawable/footer_mypage"
+        android:enabled="true"
+        android:checked="true"/>
 
 
 </menu>

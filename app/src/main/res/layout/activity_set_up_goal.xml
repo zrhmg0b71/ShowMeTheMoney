@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -423,7 +425,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="카페•간식"
+                            android:text="이체"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:paddingBottom="5dp"/>
@@ -540,5 +542,14 @@
         </LinearLayout>
 
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:menu="@menu/navi_menu" />
 
 </LinearLayout>

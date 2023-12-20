@@ -10,6 +10,7 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import java.util.Calendar
 import android.app.AlertDialog
+import android.content.Intent
 import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivitySetUpGoalBinding
 
@@ -51,6 +52,19 @@ class SetUpGoalActivity : AppCompatActivity() {
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols().months[month-1]
             }
+        }
+
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_home -> startActivity(intentFirstPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
         }
     }
     private fun setupTextWatchers() {
@@ -134,4 +148,5 @@ class SetUpGoalActivity : AppCompatActivity() {
         // 다이얼로그 보여주기
         dialog.show()
     }
+
 }
