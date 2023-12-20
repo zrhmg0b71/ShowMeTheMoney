@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.showmethemoneyproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,20 +18,49 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 첫 번째 사진 클릭 시 두 번째 사진으로 전환됨
-        binding.startImage1.setOnClickListener {
-            binding.startImage1.visibility = View.INVISIBLE
-            binding.startImage2.visibility = View.VISIBLE
+        val viewPager = binding.viewpager
+        viewPager.adapter = MyFragmentPagerAdapter(this)
+
+        binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                // 페이지가 선택되었을 때의 동작
+                when (position) {
+                    0 -> {
+                        binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_blue)
+                        binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_gray)
+                        binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_gray)
+                    }
+                    1 -> {
+                        binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_gray)
+                        binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_blue)
+                        binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_gray)
+                    }
+                    2 -> {
+                        binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_gray)
+                        binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_gray)
+                        binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_blue)
+                    }
+                }
+            }
+        })
+
+        binding.startImageSelect1.setOnClickListener {
+            binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_blue)
+            binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.viewpager.setCurrentItem(0, true)
         }
-        // 두 번째 사진 클릭 시 세 번째 사진으로 전환됨
-        binding.startImage2.setOnClickListener {
-            binding.startImage2.visibility = View.INVISIBLE
-            binding.startImage3.visibility = View.VISIBLE
+        binding.startImageSelect2.setOnClickListener {
+            binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_blue)
+            binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.viewpager.setCurrentItem(1, true)
         }
-        // 세 번째 사진 클릭 시 첫 번째 사진으로 전환됨
-        binding.startImage3.setOnClickListener {
-            binding.startImage3.visibility = View.INVISIBLE
-            binding.startImage1.visibility = View.VISIBLE
+        binding.startImageSelect3.setOnClickListener {
+            binding.startImageSelect1.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.startImageSelect2.setBackgroundResource(R.drawable.circle_button_gray)
+            binding.startImageSelect3.setBackgroundResource(R.drawable.circle_button_blue)
+            binding.viewpager.setCurrentItem(2, true)
         }
 
         // 각 사진 전환 시 밑에 동그라미 색 변환되는 것도 해야 함 ...ㅎ
