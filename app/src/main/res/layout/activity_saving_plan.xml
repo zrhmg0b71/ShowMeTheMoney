@@ -79,441 +79,634 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:background="@color/white">
-
-
-
-                    </FrameLayout>
-
-                    <!-- 식비 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <!-- 식비 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/food_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="식비"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/foodPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthFood"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthFoodTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/foodTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-                    <!-- 교통 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
-
+                        <!-- 교통 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/car_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="교통"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/carPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthCar"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider2"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthCarTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/carTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
                     </LinearLayout>
 
-                    <!-- 교육 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <!-- 교육 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/edu_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="교육"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/eduPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthEdu"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider3"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthEduTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/eduTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-                    <!-- 방세 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
-
+                        <!-- 방세 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/home_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="방세"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/homePercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthHome"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider4"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthHomeTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/homeTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
                     </LinearLayout>
 
-                    <!-- 저축 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <!-- 저축 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/saving_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="저축"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/savingPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthSaving"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider5"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthSavingTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/savingTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-                    <!-- 취미, 여가, 쇼핑 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
-
+                        <!-- 취미, 여가, 쇼핑 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/hobby_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="취미•여가•쇼핑"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/hobbyPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:text="취미•쇼핑"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthHobby"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider6"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthHobbyTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/hobbyTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
                     </LinearLayout>
 
-                    <!-- 카페, 간식 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <!-- 카페, 간식 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/cafe_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="카페•간식"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/cafePercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthCafe"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider7"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthCafeTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/cafeTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
-
-                    </LinearLayout>
-
-                    <!-- 이체 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
-
+                        <!-- 이체 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/account_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="이체"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/accountPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthAccount"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider8"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthAccountTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                        <TextView
-                            android:id="@+id/accountTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
 
                     </LinearLayout>
 
-                    <!-- 기타 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <!-- 기타 -->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:orientation="vertical">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white">
+
+                            <ImageView
+                                android:layout_marginTop="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_gravity="left"
+                                android:layout_marginRight="15dp"
+                                android:src="@drawable/etc_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="기타"
-                                android:textSize="15dp"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/etcPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25%"
-                                android:textSize="18dp"
+                                android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textColor="@color/black" />
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/monthEtc"
+                                    android:layout_marginLeft="30dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="8000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                                <View
+                                    android:id="@+id/divider9"
+                                    android:layout_width="1dp"
+                                    android:layout_height="16dp"
+                                    android:background="#C4C4C4"/>
+
+                                <TextView
+                                    android:id="@+id/monthEtcTotal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="500000"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
+                        <!-- 기타 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/lightPurple">
 
-                        <TextView
-                            android:id="@+id/etcTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="137,500"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
-
 
             </ScrollView>
 
