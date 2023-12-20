@@ -82,6 +82,9 @@ class FirstpageActivity : AppCompatActivity() {
         val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
         val intentMyPage = Intent(this, MyPageActivity::class.java)
 
+        val intentInputPage = Intent(this, InputActivity::class.java)
+        binding.goToInput.setOnClickListener{startActivity(intentInputPage)}
+
         binding.navigationView.selectedItemId = R.id.footer_home
         binding.navigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
