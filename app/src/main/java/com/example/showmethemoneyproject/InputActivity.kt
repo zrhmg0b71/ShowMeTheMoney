@@ -2,6 +2,7 @@ package com.example.showmethemoneyproject
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.icu.text.DateFormatSymbols
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -121,9 +122,26 @@ class InputActivity : AppCompatActivity() {
         binding.calendarBtn.setOnClickListener {
             showDatePickerDialog { year, month, dayOfMonth ->
                 binding.setyear.text = year.toString()
-                binding.setmonth.text = DateFormatSymbols().months[month]
+                binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
             }
+        }
+
+        val intentFirstPage = Intent(this, FirstpageActivity::class.java)
+        val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
+        val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)
+        val intentMyPage = Intent(this, MyPageActivity::class.java)
+
+        binding.cancel.setOnClickListener{startActivity(intentFirstPage)}
+
+        binding.navigationView.selectedItemId = R.id.footer_home
+        binding.navigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.footer_wallet -> startActivity(intentSetUpGoalPage)
+                R.id.footer_calendar-> startActivity(intentMonthSpendPage)
+                R.id.footer_mypage -> startActivity(intentMyPage)
+            }
+            true
         }
     }
 
