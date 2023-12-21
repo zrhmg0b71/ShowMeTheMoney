@@ -289,12 +289,6 @@ class InputActivity : AppCompatActivity() {
             }
         })
 
-
-
-
-
-
-
     }
 
     private fun updateTextViews() {
