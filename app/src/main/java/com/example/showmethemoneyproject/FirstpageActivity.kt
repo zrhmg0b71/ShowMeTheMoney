@@ -28,8 +28,8 @@ class FirstpageActivity : AppCompatActivity() {
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
 
-//        val database = Firebase.database
-//        val myRef = database.getReference("usageData")
+        //val database = Firebase.database
+        //val myRef = database.getReference("usageData/")
 
         val listView = binding.usageList
         //val adapter_list = ListViewAdapter(usageDataList)
