@@ -1,8 +1,12 @@
 package com.example.showmethemoneyproject
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.icu.text.DateFormatSymbols
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.NumberPicker
 import com.example.showmethemoneyproject.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -13,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
+import java.util.Locale
 
 class MyPageActivity : AppCompatActivity() {
 
@@ -21,7 +26,9 @@ class MyPageActivity : AppCompatActivity() {
     val calendar = Calendar.getInstance()
     val year = calendar.get(Calendar.YEAR)
     val month = calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1 해줍니다.
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    private var selectedYear = calendar.get(Calendar.YEAR)
+    private var selectedMonth = calendar.get(Calendar.MONTH)+1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +111,54 @@ class MyPageActivity : AppCompatActivity() {
             true
         }
 
+        binding.calendarBtn.setOnClickListener {
+            showCustomDatePickerDialog { year, month ->
+                binding.setyear.text = year.toString()
+                binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month-1]
+                binding.amount.text = "${month}월 총 사용 가능 금액"
+            }
+        }
 
+        val intent1 = Intent(this, MainActivity::class.java)
+        binding.logout.setOnClickListener{startActivity(intent1)}
+    }
+    private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+
+        val dialogView = layoutInflater.inflate(R.layout.date_picker, null)
+        val yearPicker = dialogView.findViewById<NumberPicker>(R.id.yearPicker)
+        val monthPicker = dialogView.findViewById<NumberPicker>(R.id.monthPicker)
+
+        // yearPicker와 monthPicker를 초기화하고 설정
+        yearPicker.minValue = 1970
+        yearPicker.maxValue = 2100
+        yearPicker.value = year
+
+        monthPicker.minValue = 1
+        monthPicker.maxValue = 12
+        monthPicker.value = month
+
+        // 다이얼로그 생성
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Select Year and Month")
+            .setPositiveButton("OK") { _, _ ->
+                // OK 버튼을 눌렀을 때의 동작
+                selectedYear = yearPicker.value
+                selectedMonth = monthPicker.value
+                Log.d("test", "selected Year : $selectedYear")
+                Log.d("test", "selected Month : $selectedMonth")
+                // 선택된 년과 월을 사용하여 원하는 동작 수행
+                callback.invoke(selectedYear,selectedMonth)
+            }
+            .setNegativeButton("Cancel") { _, _ ->
+                // Cancel 버튼을 눌렀을 때의 동작
+            }
+            .setView(dialogView)
+            .create()
+
+        // 다이얼로그 보여주기
+        dialog.show()
     }
 }
