@@ -252,7 +252,7 @@ class InputActivity : AppCompatActivity() {
                 // 데이터를 읽어오는 로직을 여기에 작성
                 if (dataSnapshot.exists()) {
                     for (key in targetKeys) {
-                        val data = dataSnapshot.child(key).value
+                        val data = dataSnapshot.child("balance").child(key).value
 
                         //가져온 데이터를 Int로 변환하고 해당 변수에 저장
                         when (key) {
@@ -282,6 +282,8 @@ class InputActivity : AppCompatActivity() {
                     accountbalance -= accountCost
                     etcbalance -= etcCost
 
+                    val totalCost = foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost + cafeCost + accountCost + etcCost
+
                                         // 각 항목을 데이터베이스에 저장
                     val saveBtn = findViewById<Button>(R.id.accept)
                     saveBtn.setOnClickListener {
@@ -289,18 +291,47 @@ class InputActivity : AppCompatActivity() {
 
                         val currentTimetable = (year.toString() + (month + 1).toString())
                         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-                        val reference: DatabaseReference =
-                            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
+                        val balRef: DatabaseReference =
+                            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/balance")
 
-                        reference.child("food").setValue(foodbalance)
-                        reference.child("car").setValue(carbalance)
-                        reference.child("edu").setValue(edubalance)
-                        reference.child("home").setValue(homebalance)
-                        reference.child("saving").setValue(savingbalance)
-                        reference.child("hobby").setValue(hobbybalance)
-                        reference.child("cafe").setValue(cafebalance)
-                        reference.child("account").setValue(accountbalance)
-                        reference.child("etc").setValue(etcbalance)
+                        for (key in targetKeys) {
+                            val balanceValue = when (key) {
+                                "food" -> foodbalance
+                                "car" -> carbalance
+                                "edu" -> edubalance
+                                "home" -> homebalance
+                                "saving" -> savingbalance
+                                "hobby" -> hobbybalance
+                                "cafe" -> cafebalance
+                                "account" -> accountbalance
+                                "etc" -> etcbalance
+                                else -> 0 // 기본값 설정 또는 예외 처리
+                            }
+
+                            balRef.child(key).setValue(balanceValue)
+                        }
+
+                        val costRef: DatabaseReference =
+                            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/spent")
+
+                        for (key in targetKeys) {
+                            val spentValue = when (key) {
+                                "food" -> foodCost
+                                "car" -> carCost
+                                "edu" -> eduCost
+                                "home" -> homeCost
+                                "saving" -> savingCost
+                                "hobby" -> hobbyCost
+                                "cafe" -> cafeCost
+                                "account" -> accountCost
+                                "etc" -> etcCost
+                                else -> 0 // 기본값 설정 또는 예외 처리
+                            }
+
+                            costRef.child(key).setValue(spentValue)
+                        }
+
+                        costRef.child("totalspend").setValue(totalCost)
 
                         //잔액을 텍스트뷰에 표시
                         updateTextViews()

@@ -23,8 +23,9 @@ import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class SetUpGoalActivity : AppCompatActivity() {
-    private var selectedYear = 1970
-    private var selectedMonth = 1
+    val calendar = Calendar.getInstance()
+    private var selectedYear = calendar.get(Calendar.YEAR)
+    private var selectedMonth = calendar.get(Calendar.MONTH)+1
 
     private lateinit var auth: FirebaseAuth
 
@@ -193,11 +194,12 @@ class SetUpGoalActivity : AppCompatActivity() {
 //                .child(auth.currentUser!!.uid)  //setValue()는 추가가 아니라 갱신 방식이라 이거 빼먹으면 다른 유저 정보 날아갈 수 있으니 이거 꼭!!
 //                .setValue(usageDataList)
 
-            val table = (selectedYear.toString() + selectedMonth.toString())
+            val currentTimeTable = (selectedYear.toString() + selectedMonth.toString())
             val model = AmountModel(balance, foodCost, carCost, eduCost, homeCost, savingCost, hobbyCost, cafeCost, accountCost, etcCost)
             amountRef
                 .child(auth.currentUser!!.uid)
-                .child(table)
+                .child(currentTimeTable)
+                .child("balance")
                 .setValue(model)
         }
     }

@@ -20,15 +20,29 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import java.util.Calendar
 import java.util.Locale
 
 class MonthSpendActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMonthSpendBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val calendar = Calendar.getInstance()
+        var currentYear = calendar.get(Calendar.YEAR)
+        var currentMonth = calendar.get(Calendar.MONTH)+1
+        var currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
 //        setupTextWatchers()
 //        updateResult()
@@ -38,8 +52,44 @@ class MonthSpendActivity : AppCompatActivity() {
             showCustomDatePickerDialog { year, month ->
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month-1]
+
+                // currentYear 및 currentMonth 변수 업데이트
+                currentYear = year
+                currentMonth = month
+
+                // calendar 변수 업데이트
+                calendar.set(Calendar.YEAR, currentYear)
+                calendar.set(Calendar.MONTH, currentMonth - 1)
             }
         }
+
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
+
+        // Firebase 초기화
+        val currentTimetable = (currentYear.toString() + (currentMonth + 1).toString())
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val reference: DatabaseReference =
+            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}.spent")
+
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
+        val spentValues = mutableMapOf<String, Int>()
+
+        for (key in targetKeys) {
+            reference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val data = dataSnapshot.value
+                    spentValues[key] = data.toString().toInt()
+
+                    // spentValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    println("Error: ${databaseError.message}")
+                }
+            })
+        }
+
 
         // 이 아래부터 차트
         binding.monthChart.setUsePercentValues(true)
