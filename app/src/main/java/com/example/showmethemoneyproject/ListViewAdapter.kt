@@ -29,10 +29,12 @@ class ListViewAdapter(val List : MutableList<UsageDataModel>) : BaseAdapter() {
         val time = convertView?.findViewById<TextView>(R.id.whenUsed)
         val location = convertView?.findViewById<TextView>(R.id.whereUsed)
         val method = convertView?.findViewById<TextView>(R.id.howUsed)
+        val usage = convertView?.findViewById<TextView>(R.id.usage)
 
         time!!.text = List[position].time
         location!!.text = List[position].location
         method!!.text = List[position].method
+        usage!!.text = List[position].usage
 
         return convertView!!
     }

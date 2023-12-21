@@ -471,7 +471,7 @@ class InputActivity : AppCompatActivity() {
     private fun createUsageData(key: String, cost: Int, place: String, paymentMethod: String, tablename: String) {
 
         val currentTime = Date()
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val formatter = SimpleDateFormat("HH:mm")
         val formattedTime = formatter.format(currentTime)
 
         // FirebaseAuth 인스턴스 초기화
