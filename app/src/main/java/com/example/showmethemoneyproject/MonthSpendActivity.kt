@@ -58,21 +58,83 @@ class MonthSpendActivity : AppCompatActivity() {
             }
         }
 
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
+
+        // Firebase 초기화
+        val currentTimetable = (currentYear.toString() + (currentMonth + 1).toString())
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val reference: DatabaseReference =
+            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/spent")
+
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "totalspend")
+        val spentValues = mutableMapOf<String, Int>()
+
+        for (key in targetKeys) {
+            reference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val data = dataSnapshot.value
+                    spentValues[key] = data.toString().toIntOrNull() ?: 0
+
+                    // spentValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    println("Error: ${databaseError.message}")
+                }
+            })
+        }
+
+        var spentTotal = spentValues["totalspend"]?.toString() ?: "0"
+        binding.monthsTotal.text = spentTotal
+
+
+        binding.foodPercent.text = ((spentValues["food"]?.toFloat() ?: 0f).toString() + "%")
+        binding.carPercent.text = ((spentValues["car"]?.toFloat() ?: 0f).toString() + "%")
+        binding.eduPercent.text = ((spentValues["edu"]?.toFloat() ?: 0f).toString() + "%")
+        binding.homePercent.text = ((spentValues["home"]?.toFloat() ?: 0f).toString() + "%")
+        binding.savingPercent.text = ((spentValues["saving"]?.toFloat() ?: 0f).toString() + "%")
+        binding.hobbyPercent.text = ((spentValues["hobby"]?.toFloat() ?: 0f).toString() + "%")
+        binding.cafePercent.text = ((spentValues["cafe"]?.toFloat() ?: 0f).toString() + "%")
+        binding.accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
+        binding.etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
+
+        binding.foodTotal.text = spentValues["food"]?.toString() ?: "0"
+        binding.carTotal.text = spentValues["car"]?.toString() ?: "0"
+        binding.eduTotal.text = spentValues["edu"]?.toString() ?: "0"
+        binding.homeTotal.text = spentValues["home"]?.toString() ?: "0"
+        binding.savingTotal.text = spentValues["saving"]?.toString() ?: "0"
+        binding.hobbyTotal.text = spentValues["hobby"]?.toString() ?: "0"
+        binding.cafeTotal.text = spentValues["cafe"]?.toString() ?: "0"
+        binding.accountTotal.text = spentValues["account"]?.toString() ?: "0"
+        binding.etcTotal.text = spentValues["etc"]?.toString() ?: "0"
+
         // 이 아래부터 차트
         binding.monthChart.setUsePercentValues(true)
 
         // data Set
         val entries = ArrayList<PieEntry>()
         // total 12 sections
-        entries.add(PieEntry(10f, "식비"))
-        entries.add(PieEntry(10f, "교통"))
-        entries.add(PieEntry(10f, "교육"))
-        entries.add(PieEntry(10f, "방세"))
-        entries.add(PieEntry(10f, "저축"))
-        entries.add(PieEntry(10f, "취미•여가•쇼핑"))
-        entries.add(PieEntry(5f, "카페•간식"))
-        entries.add(PieEntry(5f, "이체"))
-        entries.add(PieEntry(5f, "기타"))
+        entries.add(PieEntry(spentValues["food"]?.toFloat() ?: 0f, "식비"))
+        entries.add(PieEntry(spentValues["car"]?.toFloat() ?: 0f, "교통"))
+        entries.add(PieEntry(spentValues["edu"]?.toFloat() ?: 0f, "교육"))
+        entries.add(PieEntry(spentValues["home"]?.toFloat() ?: 0f, "방세"))
+        entries.add(PieEntry(spentValues["saving"]?.toFloat() ?: 0f, "저축"))
+        entries.add(PieEntry(spentValues["hobby"]?.toFloat() ?: 0f, "취미•여가•쇼핑"))
+        entries.add(PieEntry(spentValues["cafe"]?.toFloat() ?: 0f, "카페•간식"))
+        entries.add(PieEntry(spentValues["account"]?.toFloat() ?: 0f, "이체"))
+        entries.add(PieEntry(spentValues["etc"]?.toFloat() ?: 0f, "기타"))
+
+        // 하드코딩
+//        entries.add(PieEntry(10f, "식비"))
+//        entries.add(PieEntry(10f, "교통"))
+//        entries.add(PieEntry(10f, "교육"))
+//        entries.add(PieEntry(10f, "방세"))
+//        entries.add(PieEntry(10f, "저축"))
+//        entries.add(PieEntry(10f, "취미•여가•쇼핑"))
+//        entries.add(PieEntry(5f, "카페•간식"))
+//        entries.add(PieEntry(5f, "이체"))
+//        entries.add(PieEntry(5f, "기타"))
 
         val pieDataSet = PieDataSet(entries, "")
 
