@@ -201,6 +201,8 @@ class SetUpGoalActivity : AppCompatActivity() {
                 .child(currentTimeTable)
                 .child("balance")
                 .setValue(model)
+
+            Toast.makeText(this@SetUpGoalActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
