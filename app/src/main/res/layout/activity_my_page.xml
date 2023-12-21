@@ -9,9 +9,9 @@
     android:gravity="bottom">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="2">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,14 +51,57 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:background="@drawable/cardshape2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="60dp">
+            <ImageButton
+                android:id="@+id/calendarBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30sp"
+                android:src="@drawable/calendar"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/setyear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2023"
+                    android:textSize="20dp"
+                    android:textColor="@color/purple"
+                    android:layout_marginLeft="30sp"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/setmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="December"
+                    android:textSize="30dp"
+                    android:textColor="@color/purple"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="30sp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:orientation="vertical">
@@ -68,20 +111,12 @@
                 android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이번 달 총 사용 가능 금액"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
-                <TextView
-                    android:id="@+id/available"
-                    android:layout_weight="3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="잔액 0원"
-                    android:textStyle="bold"
-                    android:textColor="@color/darkGray"
-                    android:gravity="end"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +124,7 @@
                 android:background="@drawable/square_background"
                 android:orientation="horizontal">
                 <EditText
-                    android:id="@+id/food"
+                    android:id="@+id/input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -115,35 +150,38 @@
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_gravity="bottom"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:layout_marginTop="80dp"
+            android:paddingBottom="20dp"
+            android:orientation="horizontal">
             <android.widget.Button
                 android:id="@+id/cancel"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="취소"
-                android:textStyle="bold"
-                android:layout_weight="1"
                 android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/cancel_btn"
+                android:text="취소"
                 android:textColor="#ff0000"
-                android:paddingRight="10dp"/>
+                android:textStyle="bold" />
             <android.widget.Button
                 android:id="@+id/accept"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/accept_btn"
                 android:text="확인"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
