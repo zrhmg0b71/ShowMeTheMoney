@@ -183,6 +183,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
