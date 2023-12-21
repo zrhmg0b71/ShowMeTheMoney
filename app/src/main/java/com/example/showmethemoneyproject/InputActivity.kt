@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDateTime
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
@@ -33,15 +35,15 @@ class InputActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    private var foodbalance = 800000
-    private var carbalance = 800000
-    private var edubalance = 800000
-    private var homebalance = 800000
-    private var savingbalance = 800000
-    private var hobbybalance = 800000
-    private var cafebalance = 800000
-    private var accountbalance = 800000
-    private var etcbalance = 800000
+    private var foodbalance = 0
+    private var carbalance = 0
+    private var edubalance = 0
+    private var homebalance = 0
+    private var savingbalance = 0
+    private var hobbybalance = 0
+    private var cafebalance = 0
+    private var accountbalance = 0
+    private var etcbalance = 0
 
 
     private lateinit var foodEditText: EditText
@@ -248,6 +250,7 @@ class InputActivity : AppCompatActivity() {
 
 // 데이터 읽기
         reference.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // 데이터를 읽어오는 로직을 여기에 작성
                 if (dataSnapshot.exists()) {
@@ -269,7 +272,8 @@ class InputActivity : AppCompatActivity() {
                     }
 
                     //잔액을 텍스트뷰에 표시
-                    updateTextViews()
+                    val numberOfDaysInMonth = YearMonth.of(year, month).lengthOfMonth()
+                    updateTextViews(numberOfDaysInMonth)
 
                     // 각 항목의 비용을 더해 잔액에서 차감
                     foodbalance -= foodCost
@@ -334,7 +338,7 @@ class InputActivity : AppCompatActivity() {
                         costRef.child("totalspend").setValue(totalCost)
 
                         //잔액을 텍스트뷰에 표시
-                        updateTextViews()
+                        updateTextViews(numberOfDaysInMonth)
                     }
                 }
             }
@@ -347,16 +351,16 @@ class InputActivity : AppCompatActivity() {
 
     }
 
-    private fun updateTextViews() {
+    private fun updateTextViews(days: Int) {
         // 잔액을 텍스트뷰에 표시
-        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
-        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
-        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
-        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
-        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
-        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
-        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
-        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
-        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
+        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance/days)}"
+        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance/days)}"
+        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance/days)}"
+        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance/days)}"
+        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance/days)}"
+        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance/days)}"
+        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance/days)}"
+        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance/days)}"
+        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance/days)}"
     }
 }
