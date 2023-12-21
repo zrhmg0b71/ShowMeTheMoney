@@ -22,6 +22,7 @@ class FirstpageActivity : AppCompatActivity() {
     val year = calendar.get(Calendar.YEAR)
     val month = calendar.get(Calendar.MONTH)
     val day = calendar.get(Calendar.DAY_OF_MONTH)
+    val lastDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
     private lateinit var auth: FirebaseAuth
 
@@ -36,11 +37,16 @@ class FirstpageActivity : AppCompatActivity() {
 
         val database = Firebase.database
         val usageDataTable = (year.toString() + "_" + (month+1).toString() + "_" + day.toString())
+        val amountTable = (year.toString() + (month+1).toString())
         val myRef = database.getReference("usageData/${auth.currentUser!!.uid}/${usageDataTable}")
+        val todayRef = database.getReference("Amount/${auth.currentUser!!.uid}/${amountTable}")
 
         val listView = binding.usageList
         val adapter_list = ListViewAdapter(usageDataList)
 
+        var availableAmount = 0
+        var todaysTotal = 0
+        var usageTitle : String = ""
 
 
         listView.adapter = adapter_list
@@ -50,8 +56,13 @@ class FirstpageActivity : AppCompatActivity() {
 
                 for (dataModel in snapshot.children){        //snapshot에 있는 데이터들을 하나하나 꺼냄
                     Log.d("Data", dataModel.toString())
-                    usageDataList.add(dataModel.getValue(UsageDataModel::class.java)!!)  //데이터모델에 snapshot에서 꺼낸 데이터 넣어주기
+                    val usageData = dataModel.getValue(UsageDataModel::class.java)!!
+                    usageDataList.add(usageData)  //데이터모델에 snapshot에서 꺼낸 데이터 넣어주기
+
+                    usageTitle = snapshot.key.toString()
+
                 }
+
                 adapter_list.notifyDataSetChanged()// 데이터모델에 값이 다 들어가고 나면 어댑터를 새로 만들어 줘
                 //     = 데이터가 새로 들어오면 리스트뷰에 데이터를 새롭게 넣어 줘
                 Log.d("DataModel", usageDataList.toString())  //잘 추가됐는지 확인용 로그
@@ -62,6 +73,21 @@ class FirstpageActivity : AppCompatActivity() {
             }
 
         })
+
+        todayRef.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                availableAmount = snapshot.child("balance").child("available").value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        binding.availableAmount.text = availableAmount.toString()
+        //binding.todaysTotal.text = todaysTotal.toString()
+        //binding.todaysRemain.text = (availableAmount.toString().toInt() - todaysTotal).toString()
 
         val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
         val intentMonthSpendPage = Intent(this, MonthSpendActivity::class.java)

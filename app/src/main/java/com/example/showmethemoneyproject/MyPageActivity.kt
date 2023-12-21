@@ -137,7 +137,7 @@ class MyPageActivity : AppCompatActivity() {
             val currentTimetable = (selectedYear.toString() + (selectedMonth).toString())
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
-            val inputValue = binding.input.text.toString()
+            val inputValue = binding.input.text.toString().toInt()
             reference.child("balance").child("balance").setValue(inputValue)
 
             Toast.makeText(this, "사용 금액 설정 완료", Toast.LENGTH_LONG).show()

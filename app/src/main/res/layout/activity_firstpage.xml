@@ -43,7 +43,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="0원"
+                android:text="25,800원"
                 android:textAppearance="@style/title"/>
 
             <LinearLayout
@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:gravity="center_horizontal"
-                        android:text="0원"
+                        android:text="100,000원"
                         android:textAppearance="@style/content"
                         android:layout_marginTop="5dp"/>
 
