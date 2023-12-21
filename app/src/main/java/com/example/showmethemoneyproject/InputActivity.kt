@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -134,6 +136,10 @@ class InputActivity : AppCompatActivity() {
 
         // DB에 currentTime 변수명으로 현재 시간 가져가시면 됩니다.
         var currentTime = getCurrentTime()
+        var currentInfo = getCurrentDay()
+        binding.setyear.text = currentInfo[0]
+        binding.setmonth.text = currentInfo[1]
+        binding.setday.text = currentInfo[2]
 
         binding.calendarBtn.setOnClickListener {
             showDatePickerDialog { year, month, dayOfMonth ->
@@ -144,7 +150,6 @@ class InputActivity : AppCompatActivity() {
                 setupTextWatchers(year, month)
             }
         }
-
 
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)
@@ -178,6 +183,28 @@ class InputActivity : AppCompatActivity() {
             Log.d("timeTest","현재 시간은 : $hour:$minute")
         }
     }
+
+    private fun getCurrentDay(): Array<String> {
+        val currentYear: Int
+        val currentMonth: Int
+        val currentDay: Int
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            val current = LocalDate.now()
+            currentYear = current.year
+            currentMonth = current.monthValue
+            currentDay = current.dayOfMonth
+        } else {
+            val current = Calendar.getInstance()
+            currentYear = current.get(Calendar.YEAR)
+            currentMonth = current.get(Calendar.MONTH) + 1
+            currentDay = current.get(Calendar.DAY_OF_MONTH)
+        }
+
+        val monthsInEnglish = DateFormatSymbols(Locale.ENGLISH).months
+        return arrayOf(currentYear.toString(), monthsInEnglish[currentMonth - 1], currentDay.toString())
+    }
+
 
     private fun setupTextWatchers(year: Int, month: Int) {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
@@ -236,6 +263,26 @@ class InputActivity : AppCompatActivity() {
         val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
         val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
 
+        val foodPlace: String = foodPlaceEditText.text.toString()
+        val carPlace: String = carPlaceEditText.text.toString()
+        val eduPlace: String = eduPlaceEditText.text.toString()
+        val homePlace: String = homePlaceEditText.text.toString()
+        val savingPlace: String = savingPlaceEditText.text.toString()
+        val hobbyPlace: String = hobbyPlaceEditText.text.toString()
+        val cafePlace: String = cafePlaceEditText.text.toString()
+        val accountPlace: String = accountPlaceEditText.text.toString()
+        val etcPlace: String = etcPlaceEditText.text.toString()
+
+        val foodPay: String = foodPayEditText.text.toString()
+        val carPay: String = carPayEditText.text.toString()
+        val eduPay: String = eduPayEditText.text.toString()
+        val homePay: String = homePayEditText.text.toString()
+        val savingPay: String = savingPayEditText.text.toString()
+        val hobbyPay: String = hobbyPayEditText.text.toString()
+        val cafePay: String = cafePayEditText.text.toString()
+        val accountPay: String = accountPayEditText.text.toString()
+        val etcPay: String = etcPayEditText.text.toString()
+
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
 
@@ -272,8 +319,7 @@ class InputActivity : AppCompatActivity() {
                     }
 
                     //잔액을 텍스트뷰에 표시
-                    val numberOfDaysInMonth = YearMonth.of(year, month).lengthOfMonth()
-                    updateTextViews(numberOfDaysInMonth)
+                    updateTextViews()
 
                     // 각 항목의 비용을 더해 잔액에서 차감
                     foodbalance -= foodCost
@@ -288,9 +334,11 @@ class InputActivity : AppCompatActivity() {
 
                     val totalCost = foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost + cafeCost + accountCost + etcCost
 
-                                        // 각 항목을 데이터베이스에 저장
+
+                    // 각 항목을 데이터베이스에 저장
                     val saveBtn = findViewById<Button>(R.id.accept)
                     saveBtn.setOnClickListener {
+                        Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
                         auth = Firebase.auth
 
                         val currentTimetable = (year.toString() + (month + 1).toString())
@@ -337,8 +385,10 @@ class InputActivity : AppCompatActivity() {
 
                         costRef.child("totalspend").setValue(totalCost)
 
+                        Toast.makeText(this@InputActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+
                         //잔액을 텍스트뷰에 표시
-                        updateTextViews(numberOfDaysInMonth)
+                        updateTextViews()
                     }
                 }
             }
@@ -346,21 +396,23 @@ class InputActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {
                 // 에러 처리 로직을 여기에 작성
                 println("Error: ${databaseError.message}")
+                runOnUiThread {
+                    Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
         })
-
     }
 
-    private fun updateTextViews(days: Int) {
+    private fun updateTextViews() {
         // 잔액을 텍스트뷰에 표시
-        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance/days)}"
-        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance/days)}"
-        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance/days)}"
-        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance/days)}"
-        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance/days)}"
-        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance/days)}"
-        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance/days)}"
-        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance/days)}"
-        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance/days)}"
+        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
+        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
+        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
+        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
+        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
+        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
+        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
+        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
+        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
     }
 }
