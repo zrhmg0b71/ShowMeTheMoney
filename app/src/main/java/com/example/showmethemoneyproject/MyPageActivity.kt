@@ -8,6 +8,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.NumberPicker
 import android.widget.Toast
+<<<<<<< HEAD
+import com.example.showmethemoneyproject.databinding.ActivityMonthlyBinding
+=======
+>>>>>>> 388f9a58bb20fd4d50855be6b3cc26732b2f5739
 import com.example.showmethemoneyproject.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,6 +21,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.util.Calendar
 import java.util.Locale
 
@@ -31,10 +36,12 @@ class MyPageActivity : AppCompatActivity() {
     private var selectedYear = calendar.get(Calendar.YEAR)
     private var selectedMonth = calendar.get(Calendar.MONTH)+1
 
+    private lateinit var binding: ActivityMyPageBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityMyPageBinding.inflate(layoutInflater)
+        binding = ActivityMyPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         /*
@@ -81,6 +88,7 @@ class MyPageActivity : AppCompatActivity() {
         val userInfoRef: DatabaseReference =
             database.getReference("userInfo/${auth.currentUser!!.uid}")
 
+
         userInfoRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -96,7 +104,6 @@ class MyPageActivity : AppCompatActivity() {
                 println("Error: ${databaseError.message}")
             }
         })
-
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)
         val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
@@ -126,6 +133,30 @@ class MyPageActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this, "로그아웃 완료", Toast.LENGTH_LONG).show()
         }
+
+        binding.accept.setOnClickListener {
+            // FirebaseAuth 인스턴스 초기화
+            auth = Firebase.auth
+
+            val currentTimetable = (year.toString() + (month + 1).toString())
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
+            val inputValue = binding.input.text.toString()
+            reference.child("balance").child("balance").setValue(inputValue)
+
+            Toast.makeText(this, "사용 금액 설정 완료", Toast.LENGTH_LONG).show()
+
+            binding.input.setText("")
+        }
+        val currentDate = CalendarDay.today()
+        updateDetailText(currentDate)
+
+        binding.cancel.setOnClickListener {
+            onBackPressed()
+        }
+    }
+    private fun updateDetailText(selectedDate: CalendarDay) {
+        binding.amount.text = "${selectedDate.month}월 총 사용 가능 금액"
     }
     private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
         val calendar = Calendar.getInstance()
