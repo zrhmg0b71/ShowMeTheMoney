@@ -1,5 +1,6 @@
 package com.example.showmethemoneyproject
 
+import TextDecorator
 import android.app.AlertDialog
 import android.content.Intent
 import android.icu.text.DateFormatSymbols
@@ -13,15 +14,19 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.util.Calendar
+
 
 class MonthlyActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     val usageDataList = mutableListOf<usageDataModel>()
+    private lateinit var binding: ActivityMonthlyBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMonthlyBinding.inflate(layoutInflater)
+        binding = ActivityMonthlyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)
@@ -89,7 +94,30 @@ class MonthlyActivity : AppCompatActivity() {
                 binding.setmonth.text = DateFormatSymbols().months[month-1]
             }
         }
+        //하단 달력 날짜 선택 시 상세 거래 내역 반영
+        binding.calendarView.setOnDateChangedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(
+                widget: MaterialCalendarView,
+                date: CalendarDay,
+                selected: Boolean
+            ) {
+                updateDetailText(date)
+                binding.setyear.text = date.year.toString()
+                binding.setmonth.text = DateFormatSymbols().months[date.month-1]
+            }
+        })
+        val currentDate = CalendarDay.today()
+        updateDetailText(currentDate)
+
+        binding.calendarView.addDecorator(TextDecorator(this))
+
     }
+    private fun updateDetailText(selectedDate: CalendarDay) {
+        binding.detailText.text = "${selectedDate.month}월 ${selectedDate.day}일 상세 거래 내역"
+    }
+
+
+
     private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
