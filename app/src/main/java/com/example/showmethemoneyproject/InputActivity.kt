@@ -120,8 +120,8 @@ class InputActivity : AppCompatActivity() {
         accountPlaceEditText = findViewById(R.id.accountPlace)
         etcPlaceEditText = findViewById(R.id.etcPlace)
 
-        foodPayEditText = findViewById(R.id.food)
-        carPayEditText = findViewById(R.id.car)
+        foodPayEditText = findViewById(R.id.foodPay)
+        carPayEditText = findViewById(R.id.carPay)
         eduPayEditText = findViewById(R.id.eduPay)
         homePayEditText = findViewById(R.id.homePay)
         savingPayEditText = findViewById(R.id.savingPay)
@@ -297,6 +297,16 @@ class InputActivity : AppCompatActivity() {
         val accountPay: String = if (accountPayEditText.text.isNotEmpty()) accountPayEditText.text.toString() else ""
         val etcPay: String = if (etcPayEditText.text.isNotEmpty()) etcPayEditText.text.toString() else ""
 
+        var spentFood = 0
+        var spentCar = 0
+        var spentEdu = 0
+        var spentHome = 0
+        var spentSaving = 0
+        var spentHobby = 0
+        var spentCafe = 0
+        var spentAccount = 0
+        var spentEtc = 0
+
         // 나중에 사용할 데이터를 담을 변수
         val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
 
@@ -334,6 +344,23 @@ class InputActivity : AppCompatActivity() {
                         }
                     }
 
+                    for (key in targetKeys) {
+                        val data = dataSnapshot.child("spent").child(key).value
+
+                        //가져온 데이터를 Int로 변환하고 해당 변수에 저장
+                        when (key) {
+                            "food" -> spentFood = data.toString().toInt()
+                            "car" -> spentCar = data.toString().toInt()
+                            "edu" -> spentEdu = data.toString().toInt()
+                            "home" -> spentHome = data.toString().toInt()
+                            "saving" -> spentSaving = data.toString().toInt()
+                            "hobby" -> spentHobby = data.toString().toInt()
+                            "cafe" -> spentCafe = data.toString().toInt()
+                            "account" -> spentAccount = data.toString().toInt()
+                            "etc" -> spentEtc = data.toString().toInt()
+                        }
+                    }
+
                     //잔액을 텍스트뷰에 표시
                     updateTextViews()
 
@@ -348,13 +375,23 @@ class InputActivity : AppCompatActivity() {
                     accountbalance -= accountCost
                     etcbalance -= etcCost
 
-                    val totalCost = foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost + cafeCost + accountCost + etcCost
+                    spentFood += foodCost
+                    spentCar += carCost
+                    spentEdu += eduCost
+                    spentHome += homeCost
+                    spentSaving += savingCost
+                    spentHobby += hobbyCost
+                    spentCafe += cafeCost
+                    spentAccount += accountCost
+                    spentEtc += etcCost
+
+
+                    val totalspent = spentFood + spentCar + spentEdu + spentHome + spentSaving + spentHobby + spentCafe + spentAccount + spentEtc
 
 
                     // 각 항목을 데이터베이스에 저장
                     val saveBtn = findViewById<Button>(R.id.accept)
                     saveBtn.setOnClickListener {
-                        Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
                         auth = Firebase.auth
 
                         val currentTimetable = (year.toString() + (month + 1).toString())
@@ -384,22 +421,22 @@ class InputActivity : AppCompatActivity() {
 
                         for (key in targetKeys) {
                             val spentValue = when (key) {
-                                "food" -> foodCost
-                                "car" -> carCost
-                                "edu" -> eduCost
-                                "home" -> homeCost
-                                "saving" -> savingCost
-                                "hobby" -> hobbyCost
-                                "cafe" -> cafeCost
-                                "account" -> accountCost
-                                "etc" -> etcCost
+                                "food" -> spentFood
+                                "car" -> spentCar
+                                "edu" -> spentEdu
+                                "home" -> spentHome
+                                "saving" -> spentSaving
+                                "hobby" -> spentHobby
+                                "cafe" -> spentCafe
+                                "account" -> spentAccount
+                                "etc" -> spentEtc
                                 else -> 0 // 기본값 설정 또는 예외 처리
                             }
 
                             costRef.child(key).setValue(spentValue)
                         }
 
-                        costRef.child("totalspend").setValue(totalCost)
+                        costRef.child("totalspend").setValue(totalspent)
 
                         //사용처, 결제수단
                         val usageDataTable = (year.toString() + "_" + (month+1).toString() + "_" + day.toString())
@@ -434,7 +471,7 @@ class InputActivity : AppCompatActivity() {
     private fun createUsageData(key: String, cost: Int, place: String, paymentMethod: String, tablename: String) {
 
         val currentTime = Date()
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val formatter = SimpleDateFormat("HH:mm")
         val formattedTime = formatter.format(currentTime)
 
         // FirebaseAuth 인스턴스 초기화

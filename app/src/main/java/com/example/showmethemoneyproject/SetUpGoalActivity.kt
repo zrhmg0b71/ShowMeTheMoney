@@ -162,6 +162,7 @@ class SetUpGoalActivity : AppCompatActivity() {
         val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
         val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
 
+        val available = balance
         // 각 항목의 비용을 더해 잔액에서 차감
         balance = 800000 - (foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost
                 + cafeCost + accountCost + etcCost)
@@ -181,19 +182,6 @@ class SetUpGoalActivity : AppCompatActivity() {
             val database = Firebase.database
             val amountRef = database.getReference("Amount")
 
-//            val database = Firebase.database
-//            val userInfoRef = database.getReference("usageData")
-//
-//            usageDataList.add(usageDataModel("09:00 AM", "스타벅스", "#카드", "-4500원"))
-//            usageDataList.add(usageDataModel("10:00 AM", "투썸플레이스", "#카드", "-5000원"))
-//            usageDataList.add(usageDataModel("11:00 AM", "할리스커피", "#카드", "-3500원"))
-//
-//            //DB가 JSON 트리 형식으로 되어 있음
-//            //유저 정보를 담은 데이터 클래스를 현재 유저의 uid 아래에 setValue로 넣어주면 JSON형식으로 들어감
-//            userInfoRef
-//                .child(auth.currentUser!!.uid)  //setValue()는 추가가 아니라 갱신 방식이라 이거 빼먹으면 다른 유저 정보 날아갈 수 있으니 이거 꼭!!
-//                .setValue(usageDataList)
-
             val currentTimeTable = (selectedYear.toString() + selectedMonth.toString())
             val model = AmountModel(balance, foodCost, carCost, eduCost, homeCost, savingCost, hobbyCost, cafeCost, accountCost, etcCost)
             amountRef
@@ -201,6 +189,8 @@ class SetUpGoalActivity : AppCompatActivity() {
                 .child(currentTimeTable)
                 .child("balance")
                 .setValue(model)
+
+            Toast.makeText(this@SetUpGoalActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 

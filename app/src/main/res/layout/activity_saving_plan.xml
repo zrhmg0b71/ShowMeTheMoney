@@ -121,12 +121,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthFood"
+                                    android:id="@+id/foodspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -137,11 +137,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthFoodTotal"
+                                    android:id="@+id/foodmax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -185,12 +185,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthCar"
+                                    android:id="@+id/carspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text= "0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -201,11 +201,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthCarTotal"
+                                    android:id="@+id/carmax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -257,12 +257,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthEdu"
+                                    android:id="@+id/eduspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -273,11 +273,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthEduTotal"
+                                    android:id="@+id/edumax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -321,12 +321,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthHome"
+                                    android:id="@+id/homespent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -337,11 +337,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthHomeTotal"
+                                    android:id="@+id/homemax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -393,12 +393,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthSaving"
+                                    android:id="@+id/savingspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -409,11 +409,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthSavingTotal"
+                                    android:id="@+id/savingmax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -457,12 +457,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthHobby"
+                                    android:id="@+id/hobbyspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -473,11 +473,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthHobbyTotal"
+                                    android:id="@+id/hobbymax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -529,12 +529,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthCafe"
+                                    android:id="@+id/cafespent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -545,11 +545,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthCafeTotal"
+                                    android:id="@+id/cafemax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -580,7 +580,7 @@
                                 android:layout_marginLeft="30dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="이체"
+                                android:text="정기구독"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
                                 android:textSize="20dp" />
@@ -593,12 +593,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthAccount"
+                                    android:id="@+id/accountspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -609,11 +609,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthAccountTotal"
+                                    android:id="@+id/accountmax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -665,12 +665,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/monthEtc"
+                                    android:id="@+id/etcspent"
                                     android:layout_marginLeft="30dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="8000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 
@@ -681,11 +681,11 @@
                                     android:background="#C4C4C4"/>
 
                                 <TextView
-                                    android:id="@+id/monthEtcTotal"
+                                    android:id="@+id/etcmax"
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="500000"
+                                    android:text="0"
                                     android:textColor="@color/black"
                                     android:textSize="13dp" />
 

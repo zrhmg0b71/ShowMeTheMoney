@@ -6,6 +6,7 @@ import android.icu.text.DateFormatSymbols
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.NumberPicker
+import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivityMyPageBinding
 import com.example.showmethemoneyproject.databinding.ActivitySavingPlanBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -52,68 +53,59 @@ class SavingPlanActivity : AppCompatActivity() {
         // Firebase 초기화
         val currentTimetable = (currentYear.toString() + (currentMonth + 1).toString())
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val reference1: DatabaseReference =
-            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/spent")
-        val reference2: DatabaseReference =
-            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/balance")
+        val reference: DatabaseReference =
+            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
 
         // 사용한 금액 보여주는 곳
         val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "totalspend")
         val spentValues = mutableMapOf<String, Int>()
 
-        for (key in targetKeys) {
-            reference1.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val data = dataSnapshot.value
-                    spentValues[key] = data.toString().toIntOrNull() ?: 0
 
-                    // spentValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
+        reference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (key in targetKeys) {
+                        val spent = dataSnapshot.child("spent").child(key).value
+
+                        when (key) {
+                            "food" -> binding.foodspent.text = spent.toString()
+                            "car" -> binding.carspent.text = spent.toString()
+                            "edu" -> binding.eduspent.text = spent.toString()
+                            "home" -> binding.homespent.text = spent.toString()
+                            "saving" -> binding.savingspent.text = spent.toString()
+                            "hobby" -> binding.hobbyspent.text = spent.toString()
+                            "cafe" -> binding.carspent.text = spent.toString()
+                            "account" -> binding.accountspent.text = spent.toString()
+                            "etc" -> binding.etcspent.text = spent.toString()
+                        }
+                    }
+
+                    for (key in targetKeys) {
+                        val spent = dataSnapshot.child("balance").child(key).value
+
+                        when (key) {
+                            "food" -> binding.foodmax.text = spent.toString()
+                            "car" -> binding.carmax.text = spent.toString()
+                            "edu" -> binding.edumax.text = spent.toString()
+                            "home" -> binding.homemax.text = spent.toString()
+                            "saving" -> binding.savingmax.text = spent.toString()
+                            "hobby" -> binding.hobbymax.text = spent.toString()
+                            "cafe" -> binding.carmax.text = spent.toString()
+                            "account" -> binding.accountmax.text = spent.toString()
+                            "etc" -> binding.etcmax.text = spent.toString()
+                        }
+                    }
                 }
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    println("Error: ${databaseError.message}")
+            override fun onCancelled(databaseError: DatabaseError) {
+                // 에러 처리 로직을 여기에 작성
+                println("Error: ${databaseError.message}")
+                runOnUiThread {
+                    Toast.makeText(this@SavingPlanActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
                 }
-            })
-        }
-
-        binding.monthFood.text = spentValues["food"]?.toString() ?: "0"
-        binding.monthCar.text = spentValues["car"]?.toString() ?: "0"
-        binding.monthEdu.text = spentValues["edu"]?.toString() ?: "0"
-        binding.monthHome.text = spentValues["home"]?.toString() ?: "0"
-        binding.monthSaving.text = spentValues["saving"]?.toString() ?: "0"
-        binding.monthHobby.text = spentValues["hobby"]?.toString() ?: "0"
-        binding.monthCafe.text = spentValues["cafe"]?.toString() ?: "0"
-        binding.monthAccount.text = spentValues["account"]?.toString() ?: "0"
-        binding.monthEtc.text = spentValues["etc"]?.toString() ?: "0"
-
-        // 이번 달 각각 목표 금액 보여주는 곳
-        val targetKeys2 = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "balance")
-        val totalValues = mutableMapOf<String, Int>()
-
-        for (key in targetKeys2) {
-            reference2.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val data = dataSnapshot.value
-                    totalValues[key] = data.toString().toIntOrNull() ?: 0
-
-                    // totalValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    println("Error: ${databaseError.message}")
-                }
-            })
-        }
-
-        binding.monthFoodTotal.text = totalValues["food"]?.toString() ?: "0"
-        binding.monthCarTotal.text = totalValues["car"]?.toString() ?: "0"
-        binding.monthEduTotal.text = totalValues["edu"]?.toString() ?: "0"
-        binding.monthHomeTotal.text = totalValues["home"]?.toString() ?: "0"
-        binding.monthSavingTotal.text = totalValues["saving"]?.toString() ?: "0"
-        binding.monthHobbyTotal.text = totalValues["hobby"]?.toString() ?: "0"
-        binding.monthCafeTotal.text = totalValues["cafe"]?.toString() ?: "0"
-        binding.monthAccountTotal.text = totalValues["account"]?.toString() ?: "0"
-        binding.monthEtcTotal.text = totalValues["etc"]?.toString() ?: "0"
+            }
+        })
 
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)

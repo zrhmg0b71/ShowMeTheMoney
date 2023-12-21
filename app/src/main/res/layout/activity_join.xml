@@ -83,18 +83,6 @@
             android:paddingBottom="15dp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="인증번호 입력"
-            android:textColor="@color/blue"
-            android:backgroundTint="@color/blue"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="15dp" />
-
-        <EditText
             android:id="@+id/userBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,15 +104,8 @@
         android:layout_marginRight="30dp"
         android:textColor="@color/blue"
         android:layout_marginTop="10dp"
-        android:text="이용약관 동의" />
+        android:text="저는 만 14세 이상입니다." />
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="@color/blue"
-        android:text="개인정보 취급방침 동의" />
 
     <Button
         android:id="@+id/joinBtn"
