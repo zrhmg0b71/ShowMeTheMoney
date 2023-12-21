@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -134,17 +136,20 @@ class InputActivity : AppCompatActivity() {
 
         // DB에 currentTime 변수명으로 현재 시간 가져가시면 됩니다.
         var currentTime = getCurrentTime()
+        var currentInfo = getCurrentDay()
+        binding.setyear.text = currentInfo[0]
+        binding.setmonth.text = currentInfo[1]
+        binding.setday.text = currentInfo[2]
 
         binding.calendarBtn.setOnClickListener {
             showDatePickerDialog { year, month, dayOfMonth ->
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
-                updateResult(year, month)
-                setupTextWatchers(year, month)
+                updateResult(year, month, dayOfMonth)
+                setupTextWatchers(year, month, dayOfMonth)
             }
         }
-
 
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)
@@ -179,7 +184,29 @@ class InputActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupTextWatchers(year: Int, month: Int) {
+    private fun getCurrentDay(): Array<String> {
+        val currentYear: Int
+        val currentMonth: Int
+        val currentDay: Int
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            val current = LocalDate.now()
+            currentYear = current.year
+            currentMonth = current.monthValue
+            currentDay = current.dayOfMonth
+        } else {
+            val current = Calendar.getInstance()
+            currentYear = current.get(Calendar.YEAR)
+            currentMonth = current.get(Calendar.MONTH) + 1
+            currentDay = current.get(Calendar.DAY_OF_MONTH)
+        }
+
+        val monthsInEnglish = DateFormatSymbols(Locale.ENGLISH).months
+        return arrayOf(currentYear.toString(), monthsInEnglish[currentMonth - 1], currentDay.toString())
+    }
+
+
+    private fun setupTextWatchers(year: Int, month: Int, day: Int) {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
             savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
 
@@ -196,7 +223,7 @@ class InputActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    updateResult(year, month)
+                    updateResult(year, month, day)
                 }
             })
         }
@@ -225,7 +252,7 @@ class InputActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun updateResult(year: Int, month: Int) {
+    private fun updateResult(year: Int, month: Int, day: Int) {
         val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
         val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
         val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
@@ -236,11 +263,31 @@ class InputActivity : AppCompatActivity() {
         val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
         val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
 
+        val foodPlace: String = foodPlaceEditText.text.toString()
+        val carPlace: String = carPlaceEditText.text.toString()
+        val eduPlace: String = eduPlaceEditText.text.toString()
+        val homePlace: String = homePlaceEditText.text.toString()
+        val savingPlace: String = savingPlaceEditText.text.toString()
+        val hobbyPlace: String = hobbyPlaceEditText.text.toString()
+        val cafePlace: String = cafePlaceEditText.text.toString()
+        val accountPlace: String = accountPlaceEditText.text.toString()
+        val etcPlace: String = etcPlaceEditText.text.toString()
+
+        val foodPay: String = foodPayEditText.text.toString()
+        val carPay: String = carPayEditText.text.toString()
+        val eduPay: String = eduPayEditText.text.toString()
+        val homePay: String = homePayEditText.text.toString()
+        val savingPay: String = savingPayEditText.text.toString()
+        val hobbyPay: String = hobbyPayEditText.text.toString()
+        val cafePay: String = cafePayEditText.text.toString()
+        val accountPay: String = accountPayEditText.text.toString()
+        val etcPay: String = etcPayEditText.text.toString()
+
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
 
         // Firebase 초기화
-        val currentTimetable = (year.toString() + (month+1).toString())
+        val currentTimetable = (year.toString() + (month+1).toString() + day.toString())
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
         Log.d("test", currentTimetable)
@@ -287,12 +334,14 @@ class InputActivity : AppCompatActivity() {
 
                     val totalCost = foodCost + carCost + eduCost + homeCost + savingCost + hobbyCost + cafeCost + accountCost + etcCost
 
-                                        // 각 항목을 데이터베이스에 저장
+
+                    // 각 항목을 데이터베이스에 저장
                     val saveBtn = findViewById<Button>(R.id.accept)
                     saveBtn.setOnClickListener {
+                        Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
                         auth = Firebase.auth
 
-                        val currentTimetable = (year.toString() + (month + 1).toString())
+                        val currentTimetable = (year.toString() + '-' + (month + 1).toString() + '-' + day.toString())
                         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
                         val balRef: DatabaseReference =
                             database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/balance")
@@ -336,6 +385,8 @@ class InputActivity : AppCompatActivity() {
 
                         costRef.child("totalspend").setValue(totalCost)
 
+                        Toast.makeText(this@InputActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+
                         //잔액을 텍스트뷰에 표시
                         updateTextViews()
                     }
@@ -345,9 +396,11 @@ class InputActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {
                 // 에러 처리 로직을 여기에 작성
                 println("Error: ${databaseError.message}")
+                runOnUiThread {
+                    Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
         })
-
     }
 
     private fun updateTextViews() {
