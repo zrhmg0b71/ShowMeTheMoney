@@ -46,7 +46,7 @@ class MonthSpendActivity : AppCompatActivity() {
 
         val calendar = Calendar.getInstance()
         var currentYear = calendar.get(Calendar.YEAR)
-        var currentMonth = calendar.get(Calendar.MONTH)+1
+        var currentMonth = calendar.get(Calendar.MONTH)
         var currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
 //        setupTextWatchers()
@@ -124,15 +124,25 @@ class MonthSpendActivity : AppCompatActivity() {
         binding.monthsTotal.text = spentTotal
 
 
-        binding.foodPercent.text = ((spentValues["food"]?.toFloat() ?: 0f).toString() + "%")
-        binding.carPercent.text = ((spentValues["car"]?.toFloat() ?: 0f).toString() + "%")
-        binding.eduPercent.text = ((spentValues["edu"]?.toFloat() ?: 0f).toString() + "%")
-        binding.homePercent.text = ((spentValues["home"]?.toFloat() ?: 0f).toString() + "%")
-        binding.savingPercent.text = ((spentValues["saving"]?.toFloat() ?: 0f).toString() + "%")
-        binding.hobbyPercent.text = ((spentValues["hobby"]?.toFloat() ?: 0f).toString() + "%")
-        binding.cafePercent.text = ((spentValues["cafe"]?.toFloat() ?: 0f).toString() + "%")
-        binding.accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
-        binding.etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.foodPercent.text = ((spentValues["food"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.carPercent.text = ((spentValues["car"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.eduPercent.text = ((spentValues["edu"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.homePercent.text = ((spentValues["home"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.savingPercent.text = ((spentValues["saving"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.hobbyPercent.text = ((spentValues["hobby"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.cafePercent.text = ((spentValues["cafe"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
+//        binding.etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
+
+        binding.foodPercent.text = "10%"
+        binding.carPercent.text = "10%"
+        binding.eduPercent.text = "20%"
+        binding.homePercent.text = "10%"
+        binding.savingPercent.text = "10%"
+        binding.hobbyPercent.text = "10%"
+        binding.cafePercent.text = "10%"
+        binding.accountPercent.text = "10%"
+        binding.etcPercent.text = "10%"
 
         binding.foodTotal.text = spentValues["food"]?.toString() ?: "0"
         binding.carTotal.text = spentValues["car"]?.toString() ?: "0"
@@ -274,25 +284,24 @@ class MonthSpendActivity : AppCompatActivity() {
         val etcTotal = findViewById<TextView>(R.id.etcTotal)
         etcTotal.text = spentValues["etc"].toString()
 
-        val foodPercent = findViewById<TextView>(R.id.carPercent)
-        foodPercent.text = ((spentValues["food"]?.toFloat() ?: 0f).toString() + "%")
-        val carPercent = findViewById<TextView>(R.id.carPercent)
-        carPercent.text = ((spentValues["car"]?.toFloat() ?: 0f).toString() + "%")
-        val eduPercent = findViewById<TextView>(R.id.carPercent)
-        eduPercent.text = ((spentValues["edu"]?.toFloat() ?: 0f).toString() + "%")
-        val homePercent = findViewById<TextView>(R.id.carPercent)
-        homePercent.text = ((spentValues["home"]?.toFloat() ?: 0f).toString() + "%")
-        val savingPercent = findViewById<TextView>(R.id.carPercent)
-        savingPercent.text = ((spentValues["saving"]?.toFloat() ?: 0f).toString() + "%")
-        val hobbyPercent = findViewById<TextView>(R.id.carPercent)
-        hobbyPercent.text = ((spentValues["hobby"]?.toFloat() ?: 0f).toString() + "%")
-        val cafePercent = findViewById<TextView>(R.id.carPercent)
-        cafePercent.text = ((spentValues["cafe"]?.toFloat() ?: 0f).toString() + "%")
-        val accountPercent = findViewById<TextView>(R.id.carPercent)
-        accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
-        val etcPercent = findViewById<TextView>(R.id.carPercent)
-        etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
-
+//        val foodPercent = findViewById<TextView>(R.id.carPercent)
+//        foodPercent.text = ((spentValues["food"]?.toFloat() ?: 0f).toString() + "%")
+//        val carPercent = findViewById<TextView>(R.id.carPercent)
+//        carPercent.text = ((spentValues["car"]?.toFloat() ?: 0f).toString() + "%")
+//        val eduPercent = findViewById<TextView>(R.id.carPercent)
+//        eduPercent.text = ((spentValues["edu"]?.toFloat() ?: 0f).toString() + "%")
+//        val homePercent = findViewById<TextView>(R.id.carPercent)
+//        homePercent.text = ((spentValues["home"]?.toFloat() ?: 0f).toString() + "%")
+//        val savingPercent = findViewById<TextView>(R.id.carPercent)
+//        savingPercent.text = ((spentValues["saving"]?.toFloat() ?: 0f).toString() + "%")
+//        val hobbyPercent = findViewById<TextView>(R.id.carPercent)
+//        hobbyPercent.text = ((spentValues["hobby"]?.toFloat() ?: 0f).toString() + "%")
+//        val cafePercent = findViewById<TextView>(R.id.carPercent)
+//        cafePercent.text = ((spentValues["cafe"]?.toFloat() ?: 0f).toString() + "%")
+//        val accountPercent = findViewById<TextView>(R.id.carPercent)
+//        accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
+//        val etcPercent = findViewById<TextView>(R.id.carPercent)
+//        etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
     }
 
 
