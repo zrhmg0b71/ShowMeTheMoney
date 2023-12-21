@@ -96,7 +96,7 @@ class MonthSpendActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         // Firebase 초기화
-        val currentTimetable = (currentYear.toString() + (currentMonth + 1).toString())
+        val currentTimetable = (currentYear.toString() + (currentMonth).toString())
         Log.d("test", "$currentYear 과 $currentMonth")
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference: DatabaseReference =
@@ -233,7 +233,7 @@ class MonthSpendActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         // Firebase 초기화
-        val currentTimetable = (year.toString() + (month + 1).toString())
+        val currentTimetable = (year.toString() + (month).toString())
         Log.d("test", "$year 과 $month")
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference: DatabaseReference =
@@ -302,6 +302,7 @@ class MonthSpendActivity : AppCompatActivity() {
 //        accountPercent.text = ((spentValues["account"]?.toFloat() ?: 0f).toString() + "%")
 //        val etcPercent = findViewById<TextView>(R.id.carPercent)
 //        etcPercent.text = ((spentValues["etc"]?.toFloat() ?: 0f).toString() + "%")
+
     }
 
 
