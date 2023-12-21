@@ -1,6 +1,5 @@
 package com.example.showmethemoneyproject
 
-import TextDecorator
 import android.app.AlertDialog
 import android.content.Intent
 import android.icu.text.DateFormatSymbols
@@ -111,7 +110,6 @@ class MonthlyActivity : AppCompatActivity() {
         val currentDate = CalendarDay.today()
         updateDetailText(currentDate)
 
-        binding.calendarView.addDecorator(TextDecorator(this))
 
     }
     private fun updateDetailText(selectedDate: CalendarDay) {
