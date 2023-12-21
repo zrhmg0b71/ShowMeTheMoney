@@ -134,7 +134,7 @@ class MyPageActivity : AppCompatActivity() {
             // FirebaseAuth 인스턴스 초기화
             auth = Firebase.auth
 
-            val currentTimetable = (year.toString() + (month + 1).toString())
+            val currentTimetable = (selectedYear.toString() + (selectedMonth).toString())
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
             val inputValue = binding.input.text.toString()
