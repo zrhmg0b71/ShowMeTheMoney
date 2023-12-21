@@ -128,8 +128,6 @@ class SetUpGoalActivity : AppCompatActivity() {
         monthPicker.maxValue = 12
         monthPicker.value = month
 
-        // 여기염
-
         // 다이얼로그 생성
         val dialog = AlertDialog.Builder(this)
             .setTitle("Select Year and Month")
@@ -150,14 +148,6 @@ class SetUpGoalActivity : AppCompatActivity() {
 
         // 다이얼로그 보여주기
         dialog.show()
-
-//        val database = Firebase.database
-//        val myRef = database.getReference("Amount")
-//
-//        val model = DateModel(selectedYear, selectedMonth)
-//        currentMonth = monthPicker.value
-//
-//        myRef.child(tablename).setValue(model)
 
     }
     private fun updateResult() {

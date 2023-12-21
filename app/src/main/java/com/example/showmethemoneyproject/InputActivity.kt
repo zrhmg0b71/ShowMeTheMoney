@@ -1,27 +1,37 @@
 package com.example.showmethemoneyproject
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.icu.text.DateFormatSymbols
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.inputmethod.InputBinding
 import android.widget.EditText
-import android.widget.NumberPicker
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.showmethemoneyproject.databinding.ActivityInputBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
+
 class InputActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     private var foodbalance = 800000
     private var carbalance = 800000
     private var edubalance = 800000
@@ -85,6 +95,7 @@ class InputActivity : AppCompatActivity() {
         cafeEditText = findViewById(R.id.cafe)
         accountEditText = findViewById(R.id.account)
         etcEditText = findViewById(R.id.etc)
+
         foodPlaceEditText = findViewById(R.id.foodPlace)
         carPlaceEditText = findViewById(R.id.carPlace)
         eduPlaceEditText = findViewById(R.id.eduPlace)
@@ -94,6 +105,7 @@ class InputActivity : AppCompatActivity() {
         cafePlaceEditText = findViewById(R.id.cafePlace)
         accountPlaceEditText = findViewById(R.id.accountPlace)
         etcPlaceEditText = findViewById(R.id.etcPlace)
+
         foodPayEditText = findViewById(R.id.food)
         carPayEditText = findViewById(R.id.car)
         eduPayEditText = findViewById(R.id.eduPay)
@@ -103,6 +115,7 @@ class InputActivity : AppCompatActivity() {
         cafePayEditText = findViewById(R.id.cafePay)
         accountPayEditText = findViewById(R.id.accountPay)
         etcPayEditText = findViewById(R.id.etcPay)
+
         calculationFoodTextView = findViewById(R.id.calculateFood)
         calculationCarTextView = findViewById(R.id.calculateCar)
         calculationEduTextView = findViewById(R.id.calculateEdu)
@@ -113,8 +126,8 @@ class InputActivity : AppCompatActivity() {
         calculationAccountTextView = findViewById(R.id.calculateAccount)
         calculationEtcTextView = findViewById(R.id.calculateEtc)
 
-        setupTextWatchers()
-        updateResult()
+        //setupTextWatchers()
+        //updateResult()
 
         // DB에 currentTime 변수명으로 현재 시간 가져가시면 됩니다.
         var currentTime = getCurrentTime()
@@ -124,8 +137,12 @@ class InputActivity : AppCompatActivity() {
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
+                updateResult(year, month)
+                setupTextWatchers(year, month)
             }
         }
+
+
 
         val intentFirstPage = Intent(this, FirstpageActivity::class.java)
         val intentSetUpGoalPage = Intent(this, SetUpGoalActivity::class.java)
@@ -159,7 +176,7 @@ class InputActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupTextWatchers() {
+    private fun setupTextWatchers(year: Int, month: Int) {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
             savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
 
@@ -176,44 +193,10 @@ class InputActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    updateResult()
+                    updateResult(year, month)
                 }
             })
         }
-    }
-    private fun updateResult() {
-        val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
-        val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
-        val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
-        val homeCost: Int = if (homeEditText.text.isNotEmpty()) homeEditText.text.toString().toInt() else 0
-        val savingCost: Int = if (savingEditText.text.isNotEmpty()) savingEditText.text.toString().toInt() else 0
-        val hobbyCost: Int = if (hobbyEditText.text.isNotEmpty()) hobbyEditText.text.toString().toInt() else 0
-        val cafeCost: Int = if (cafeEditText.text.isNotEmpty()) cafeEditText.text.toString().toInt() else 0
-        val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
-        val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
-
-        // 각 항목의 비용을 더해 잔액에서 차감
-        foodbalance = 800000 - foodCost
-        carbalance = 800000 - carCost
-        edubalance = 800000- eduCost
-        homebalance = 800000- homeCost
-        savingbalance = 800000 - savingCost
-        hobbybalance = 800000 - hobbyCost
-        cafebalance = 800000- cafeCost
-        accountbalance = 800000 - accountCost
-        etcbalance = 800000 - etcCost
-
-        // 잔액을 텍스트뷰에 표시
-        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
-        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
-        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
-        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
-        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
-        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
-        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
-        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
-        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
-
     }
 
     private fun showDatePickerDialog(callback: (year:Int, month:Int, dayOfMonth:Int)->Unit) {
@@ -237,5 +220,93 @@ class InputActivity : AppCompatActivity() {
         )
 
         datePickerDialog.show()
+    }
+
+    private fun updateResult(year: Int, month: Int) {
+        val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
+        val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
+        val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
+        val homeCost: Int = if (homeEditText.text.isNotEmpty()) homeEditText.text.toString().toInt() else 0
+        val savingCost: Int = if (savingEditText.text.isNotEmpty()) savingEditText.text.toString().toInt() else 0
+        val hobbyCost: Int = if (hobbyEditText.text.isNotEmpty()) hobbyEditText.text.toString().toInt() else 0
+        val cafeCost: Int = if (cafeEditText.text.isNotEmpty()) cafeEditText.text.toString().toInt() else 0
+        val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
+        val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
+
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
+
+        // Firebase 초기화
+        val currentTimetable = (year.toString() + (month+1).toString())
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
+        Log.d("test", currentTimetable)
+
+// 나중에 사용할 데이터를 담을 변수
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
+
+// 데이터 읽기
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // 데이터를 읽어오는 로직을 여기에 작성
+                if (dataSnapshot.exists()) {
+                    for (key in targetKeys) {
+                        val data = dataSnapshot.child(key).value
+
+                        //가져온 데이터를 Int로 변환하고 해당 변수에 저장
+                        when (key) {
+                            "food" -> foodbalance = data.toString().toInt()
+                            "car" -> carbalance = data.toString().toInt()
+                            "edu" -> edubalance = data.toString().toInt()
+                            "home" -> homebalance = data.toString().toInt()
+                            "saving" -> savingbalance = data.toString().toInt()
+                            "hobby" -> hobbybalance = data.toString().toInt()
+                            "cafe" -> cafebalance = data.toString().toInt()
+                            "account" -> accountbalance = data.toString().toInt()
+                            "etc" -> etcbalance = data.toString().toInt()
+                        }
+                    }
+
+                    // 각 항목의 비용을 더해 잔액에서 차감
+                    foodbalance -= foodCost
+                    carbalance -= carCost
+                    edubalance -= eduCost
+                    homebalance -= homeCost
+                    savingbalance -= savingCost
+                    hobbybalance -= hobbyCost
+                    cafebalance -= cafeCost
+                    accountbalance -= accountCost
+                    etcbalance -= etcCost
+
+                    //잔액을 텍스트뷰에 표시
+                    updateTextViews()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // 에러 처리 로직을 여기에 작성
+                println("Error: ${databaseError.message}")
+            }
+        })
+
+
+
+
+
+
+
+    }
+
+    private fun updateTextViews() {
+        // 잔액을 텍스트뷰에 표시
+        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
+        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
+        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
+        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
+        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
+        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
+        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
+        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
+        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
     }
 }
