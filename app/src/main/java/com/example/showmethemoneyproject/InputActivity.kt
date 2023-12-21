@@ -146,8 +146,8 @@ class InputActivity : AppCompatActivity() {
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
-                updateResult(year, month, dayOfMonth)
-                setupTextWatchers(year, month, dayOfMonth)
+                updateResult(year, month)
+                setupTextWatchers(year, month)
             }
         }
 
@@ -206,7 +206,7 @@ class InputActivity : AppCompatActivity() {
     }
 
 
-    private fun setupTextWatchers(year: Int, month: Int, day: Int) {
+    private fun setupTextWatchers(year: Int, month: Int) {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
             savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
 
@@ -223,7 +223,7 @@ class InputActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    updateResult(year, month, day)
+                    updateResult(year, month)
                 }
             })
         }
@@ -252,7 +252,7 @@ class InputActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun updateResult(year: Int, month: Int, day: Int) {
+    private fun updateResult(year: Int, month: Int) {
         val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
         val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
         val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
@@ -287,7 +287,7 @@ class InputActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         // Firebase 초기화
-        val currentTimetable = (year.toString() + (month+1).toString() + day.toString())
+        val currentTimetable = (year.toString() + (month+1).toString())
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
         Log.d("test", currentTimetable)
@@ -341,7 +341,7 @@ class InputActivity : AppCompatActivity() {
                         Toast.makeText(this@InputActivity, "실패하였습니다.", Toast.LENGTH_SHORT).show()
                         auth = Firebase.auth
 
-                        val currentTimetable = (year.toString() + '-' + (month + 1).toString() + '-' + day.toString())
+                        val currentTimetable = (year.toString() + (month + 1).toString())
                         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
                         val balRef: DatabaseReference =
                             database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}/balance")
