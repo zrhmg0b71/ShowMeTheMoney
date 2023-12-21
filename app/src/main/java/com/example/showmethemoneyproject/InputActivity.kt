@@ -272,8 +272,7 @@ class InputActivity : AppCompatActivity() {
                     }
 
                     //잔액을 텍스트뷰에 표시
-                    val numberOfDaysInMonth = YearMonth.of(year, month).lengthOfMonth()
-                    updateTextViews(numberOfDaysInMonth)
+                    updateTextViews()
 
                     // 각 항목의 비용을 더해 잔액에서 차감
                     foodbalance -= foodCost
@@ -338,7 +337,7 @@ class InputActivity : AppCompatActivity() {
                         costRef.child("totalspend").setValue(totalCost)
 
                         //잔액을 텍스트뷰에 표시
-                        updateTextViews(numberOfDaysInMonth)
+                        updateTextViews()
                     }
                 }
             }
@@ -351,16 +350,16 @@ class InputActivity : AppCompatActivity() {
 
     }
 
-    private fun updateTextViews(days: Int) {
+    private fun updateTextViews() {
         // 잔액을 텍스트뷰에 표시
-        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance/days)}"
-        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance/days)}"
-        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance/days)}"
-        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance/days)}"
-        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance/days)}"
-        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance/days)}"
-        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance/days)}"
-        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance/days)}"
-        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance/days)}"
+        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
+        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
+        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
+        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
+        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
+        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
+        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
+        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
+        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
     }
 }
