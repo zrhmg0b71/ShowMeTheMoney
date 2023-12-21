@@ -72,7 +72,7 @@ class MonthSpendActivity : AppCompatActivity() {
         val reference: DatabaseReference =
             database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}.spent")
 
-        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "totalspend")
         val spentValues = mutableMapOf<String, Int>()
 
         for (key in targetKeys) {
@@ -89,6 +89,8 @@ class MonthSpendActivity : AppCompatActivity() {
                 }
             })
         }
+
+        binding.monthsTotal.text = spentValues["totalspend"].toString()
 
 
         // 이 아래부터 차트
