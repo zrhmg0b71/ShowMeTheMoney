@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -267,6 +268,9 @@ class InputActivity : AppCompatActivity() {
                         }
                     }
 
+                    //잔액을 텍스트뷰에 표시
+                    updateTextViews()
+
                     // 각 항목의 비용을 더해 잔액에서 차감
                     foodbalance -= foodCost
                     carbalance -= carCost
@@ -278,8 +282,29 @@ class InputActivity : AppCompatActivity() {
                     accountbalance -= accountCost
                     etcbalance -= etcCost
 
-                    //잔액을 텍스트뷰에 표시
-                    updateTextViews()
+                                        // 각 항목을 데이터베이스에 저장
+                    val saveBtn = findViewById<Button>(R.id.accept)
+                    saveBtn.setOnClickListener {
+                        auth = Firebase.auth
+
+                        val currentTimetable = (year.toString() + (month + 1).toString())
+                        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+                        val reference: DatabaseReference =
+                            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
+
+                        reference.child("food").setValue(foodbalance)
+                        reference.child("car").setValue(carbalance)
+                        reference.child("edu").setValue(edubalance)
+                        reference.child("home").setValue(homebalance)
+                        reference.child("saving").setValue(savingbalance)
+                        reference.child("hobby").setValue(hobbybalance)
+                        reference.child("cafe").setValue(cafebalance)
+                        reference.child("account").setValue(accountbalance)
+                        reference.child("etc").setValue(etcbalance)
+
+                        //잔액을 텍스트뷰에 표시
+                        updateTextViews()
+                    }
                 }
             }
 
@@ -288,12 +313,6 @@ class InputActivity : AppCompatActivity() {
                 println("Error: ${databaseError.message}")
             }
         })
-
-
-
-
-
-
 
     }
 
