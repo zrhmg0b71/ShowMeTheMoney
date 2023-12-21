@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class ListViewAdapter(val List : MutableList<usageDataModel>) : BaseAdapter() {
+class ListViewAdapter(val List : MutableList<UsageDataModel>) : BaseAdapter() {
     override fun getCount(): Int {
         return List.size
     }

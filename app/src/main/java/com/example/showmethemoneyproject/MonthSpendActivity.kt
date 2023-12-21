@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.NumberPicker
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat.animate
 import com.example.showmethemoneyproject.databinding.ActivityLoginBinding
@@ -53,45 +54,9 @@ class MonthSpendActivity : AppCompatActivity() {
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month-1]
 
-                // currentYear 및 currentMonth 변수 업데이트
-                currentYear = year
-                currentMonth = month
-
-                // calendar 변수 업데이트
-                calendar.set(Calendar.YEAR, currentYear)
-                calendar.set(Calendar.MONTH, currentMonth - 1)
+                updateUI(year, month)
             }
         }
-
-        // FirebaseAuth 인스턴스 초기화
-        auth = Firebase.auth
-
-        // Firebase 초기화
-        val currentTimetable = (currentYear.toString() + (currentMonth + 1).toString())
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val reference: DatabaseReference =
-            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}.spent")
-
-        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "totalspend")
-        val spentValues = mutableMapOf<String, Int>()
-
-        for (key in targetKeys) {
-            reference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val data = dataSnapshot.value
-                    spentValues[key] = data.toString().toInt()
-
-                    // spentValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    println("Error: ${databaseError.message}")
-                }
-            })
-        }
-
-        binding.monthsTotal.text = spentValues["totalspend"].toString()
-
 
         // 이 아래부터 차트
         binding.monthChart.setUsePercentValues(true)
@@ -178,6 +143,40 @@ class MonthSpendActivity : AppCompatActivity() {
 //            })
 //        }
 //    }
+
+    private fun updateUI(year: Int, month: Int) {
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
+
+        // Firebase 초기화
+        val currentTimetable = (year.toString() + (month + 1).toString())
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val reference: DatabaseReference =
+            database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}.spent")
+
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc", "totalspend")
+        val spentValues = mutableMapOf<String, Int>()
+
+        for (key in targetKeys) {
+            reference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val data = dataSnapshot.value
+                    spentValues[key] = data.toString().toInt()
+
+                    // spentValues["food"] 로 현재까지 식비소비금액 확인 가능(다른 항목도 마찬가지)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    println("Error: ${databaseError.message}")
+                }
+            })
+        }
+
+        val monthTotal = findViewById<TextView>(R.id.monthsTotal)
+        monthTotal.text = spentValues["totalspend"].toString()
+    }
+
+
 
     private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
         val calendar = Calendar.getInstance()

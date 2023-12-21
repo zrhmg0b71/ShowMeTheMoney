@@ -78,7 +78,7 @@ class JoinActivity : AppCompatActivity() {
                             val userInfoRef = database.getReference("userInfo")
 
                             //불러온 유저 정보를 데이터 클래스에 저장
-                            val userInfo = userInfoModel(userName, email, phoneNumber, birth)
+                            val userInfo = UserInfoModel(userName, email, phoneNumber, birth)
 
                             //DB가 JSON 트리 형식으로 되어 있음
                             //유저 정보를 담은 데이터 클래스를 현재 유저의 uid 아래에 setValue로 넣어주면 JSON형식으로 들어감
