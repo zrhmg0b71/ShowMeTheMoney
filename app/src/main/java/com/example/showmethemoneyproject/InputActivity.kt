@@ -25,17 +25,24 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 
 class InputActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+
+    val calendar = Calendar.getInstance()
+    val defaultYear = calendar.get(Calendar.YEAR)
+    val defaultMonth = calendar.get(Calendar.MONTH)
+    val defaultDay = calendar.get(Calendar.DAY_OF_MONTH)
 
     private var foodbalance = 0
     private var carbalance = 0
@@ -91,6 +98,8 @@ class InputActivity : AppCompatActivity() {
         val binding = ActivityInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //updateResult(defaultYear, defaultMonth)
+
         foodEditText = findViewById(R.id.food)
         carEditText = findViewById(R.id.car)
         eduEditText = findViewById(R.id.edu)
@@ -135,7 +144,7 @@ class InputActivity : AppCompatActivity() {
         //updateResult()
 
         // DB에 currentTime 변수명으로 현재 시간 가져가시면 됩니다.
-        var currentTime = getCurrentTime()
+        //var currentTime = getCurrentTime()
         var currentInfo = getCurrentDay()
         binding.setyear.text = currentInfo[0]
         binding.setmonth.text = currentInfo[1]
@@ -146,9 +155,13 @@ class InputActivity : AppCompatActivity() {
                 binding.setyear.text = year.toString()
                 binding.setmonth.text = DateFormatSymbols(Locale.ENGLISH).months[month]
                 binding.setday.text = dayOfMonth.toString()
-                updateResult(year, month)
-                setupTextWatchers(year, month)
+                updateResult(year, month, dayOfMonth)
+                setupTextWatchers(year, month, dayOfMonth)
             }
+        }
+
+        binding.showbalance.setOnClickListener {
+            updateResult(defaultYear, defaultMonth, defaultDay)
         }
 
 
@@ -206,7 +219,7 @@ class InputActivity : AppCompatActivity() {
     }
 
 
-    private fun setupTextWatchers(year: Int, month: Int) {
+    private fun setupTextWatchers(year: Int, month: Int, day: Int) {
         val editTextList = listOf(foodEditText, carEditText, eduEditText, homeEditText,
             savingEditText, hobbyEditText, cafeEditText, accountEditText, etcEditText)
 
@@ -223,7 +236,7 @@ class InputActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    updateResult(year, month)
+                    updateResult(year, month, day)
                 }
             })
         }
@@ -252,7 +265,8 @@ class InputActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun updateResult(year: Int, month: Int) {
+    private fun updateResult(year: Int = defaultYear, month: Int = defaultMonth, day: Int = defaultMonth) {
+
         val foodCost: Int = if (foodEditText.text.isNotEmpty()) foodEditText.text.toString().toInt() else 0
         val carCost: Int = if (carEditText.text.isNotEmpty()) carEditText.text.toString().toInt() else 0
         val eduCost: Int = if (eduEditText.text.isNotEmpty()) eduEditText.text.toString().toInt() else 0
@@ -263,39 +277,41 @@ class InputActivity : AppCompatActivity() {
         val accountCost: Int = if (accountEditText.text.isNotEmpty()) accountEditText.text.toString().toInt() else 0
         val etcCost: Int = if (etcEditText.text.isNotEmpty()) etcEditText.text.toString().toInt() else 0
 
-        val foodPlace: String = foodPlaceEditText.text.toString()
-        val carPlace: String = carPlaceEditText.text.toString()
-        val eduPlace: String = eduPlaceEditText.text.toString()
-        val homePlace: String = homePlaceEditText.text.toString()
-        val savingPlace: String = savingPlaceEditText.text.toString()
-        val hobbyPlace: String = hobbyPlaceEditText.text.toString()
-        val cafePlace: String = cafePlaceEditText.text.toString()
-        val accountPlace: String = accountPlaceEditText.text.toString()
-        val etcPlace: String = etcPlaceEditText.text.toString()
+        val foodPlace: String = if (foodPlaceEditText.text.isNotEmpty()) foodPlaceEditText.text.toString() else ""
+        val carPlace: String = if (carPlaceEditText.text.isNotEmpty()) carPlaceEditText.text.toString() else ""
+        val eduPlace: String = if (eduPlaceEditText.text.isNotEmpty()) eduPlaceEditText.text.toString() else ""
+        val homePlace: String = if (homePlaceEditText.text.isNotEmpty()) homePlaceEditText.text.toString() else ""
+        val savingPlace: String = if (savingPlaceEditText.text.isNotEmpty()) savingPlaceEditText.text.toString() else ""
+        val hobbyPlace: String = if (hobbyPlaceEditText.text.isNotEmpty()) hobbyPlaceEditText.text.toString() else ""
+        val cafePlace: String = if (cafePlaceEditText.text.isNotEmpty()) cafePlaceEditText.text.toString() else ""
+        val accountPlace: String = if (accountPlaceEditText.text.isNotEmpty()) accountPlaceEditText.text.toString() else ""
+        val etcPlace: String = if (etcPlaceEditText.text.isNotEmpty()) etcPlaceEditText.text.toString() else ""
 
-        val foodPay: String = foodPayEditText.text.toString()
-        val carPay: String = carPayEditText.text.toString()
-        val eduPay: String = eduPayEditText.text.toString()
-        val homePay: String = homePayEditText.text.toString()
-        val savingPay: String = savingPayEditText.text.toString()
-        val hobbyPay: String = hobbyPayEditText.text.toString()
-        val cafePay: String = cafePayEditText.text.toString()
-        val accountPay: String = accountPayEditText.text.toString()
-        val etcPay: String = etcPayEditText.text.toString()
+        val foodPay: String = if (foodPayEditText.text.isNotEmpty()) foodPayEditText.text.toString() else ""
+        val carPay: String = if (carPayEditText.text.isNotEmpty()) carPayEditText.text.toString() else ""
+        val eduPay: String = if (eduPayEditText.text.isNotEmpty()) eduPayEditText.text.toString() else ""
+        val homePay: String = if (homePayEditText.text.isNotEmpty()) homePayEditText.text.toString() else ""
+        val savingPay: String = if (savingPayEditText.text.isNotEmpty()) savingPayEditText.text.toString() else ""
+        val hobbyPay: String = if (hobbyPayEditText.text.isNotEmpty()) hobbyPayEditText.text.toString() else ""
+        val cafePay: String = if (cafePayEditText.text.isNotEmpty()) cafePayEditText.text.toString() else ""
+        val accountPay: String = if (accountPayEditText.text.isNotEmpty()) accountPayEditText.text.toString() else ""
+        val etcPay: String = if (etcPayEditText.text.isNotEmpty()) etcPayEditText.text.toString() else ""
+
+        // 나중에 사용할 데이터를 담을 변수
+        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
 
         // FirebaseAuth 인스턴스 초기화
         auth = Firebase.auth
 
-        // Firebase 초기화
+
+        //결제 금액
         val currentTimetable = (year.toString() + (month+1).toString())
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference: DatabaseReference = database.getReference("Amount/${auth.currentUser!!.uid}/${currentTimetable}")
         Log.d("test", currentTimetable)
 
-// 나중에 사용할 데이터를 담을 변수
-        val targetKeys = arrayOf("food", "car", "edu", "home", "saving", "hobby", "cafe", "account", "etc")
 
-// 데이터 읽기
+        // 데이터 읽기
         reference.addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -385,6 +401,18 @@ class InputActivity : AppCompatActivity() {
 
                         costRef.child("totalspend").setValue(totalCost)
 
+                        //사용처, 결제수단
+                        val usageDataTable = (year.toString() + "_" + (month+1).toString() + "_" + day.toString())
+                        createUsageData("food", foodCost, foodPlace, foodPay, usageDataTable)
+                        createUsageData("car", carCost, carPlace, carPay, usageDataTable)
+                        createUsageData("edu", eduCost, eduPlace, eduPay, usageDataTable)
+                        createUsageData("home", homeCost, homePlace, homePay, usageDataTable)
+                        createUsageData("saving", savingCost, savingPlace, savingPay, usageDataTable)
+                        createUsageData("hobby", hobbyCost, hobbyPlace, hobbyPay, usageDataTable)
+                        createUsageData("cafe", cafeCost, cafePlace, cafePay, usageDataTable)
+                        createUsageData("account", accountCost, accountPlace, accountPay, usageDataTable)
+                        createUsageData("etc", etcCost, etcPlace, etcPay, usageDataTable)
+
                         Toast.makeText(this@InputActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
 
                         //잔액을 텍스트뷰에 표시
@@ -403,16 +431,35 @@ class InputActivity : AppCompatActivity() {
         })
     }
 
+    private fun createUsageData(key: String, cost: Int, place: String, paymentMethod: String, tablename: String) {
+
+        val currentTime = Date()
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val formattedTime = formatter.format(currentTime)
+
+        // FirebaseAuth 인스턴스 초기화
+        auth = Firebase.auth
+
+        //DB 연결
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val usageDataRef = database.getReference("usageData/${auth.currentUser!!.uid}/${tablename}/${place}")
+
+        if (cost != 0 && place.isNotEmpty() && paymentMethod.isNotEmpty()) {
+            val usageData = UsageDataModel(formattedTime, place, paymentMethod, cost.toString())
+            usageDataRef.setValue(usageData)
+        }
+    }
+
     private fun updateTextViews() {
         // 잔액을 텍스트뷰에 표시
-        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)}"
-        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)}"
-        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)}"
-        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)}"
-        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)}"
-        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)}"
-        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)}"
-        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)}"
-        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)}"
+        calculationFoodTextView.text = "잔액: ${String.format("%d", foodbalance)} 원"
+        calculationCarTextView.text = "잔액: ${String.format("%d", carbalance)} 원"
+        calculationEduTextView.text = "잔액: ${String.format("%d", edubalance)} 원"
+        calculationHomeTextView.text = "잔액: ${String.format("%d", homebalance)} 원"
+        calculationSavingTextView.text = "잔액: ${String.format("%d", savingbalance)} 원"
+        calculationHobbyTextView.text = "잔액: ${String.format("%d", hobbybalance)} 원"
+        calculationCafeTextView.text = "잔액: ${String.format("%d", cafebalance)} 원"
+        calculationAccountTextView.text = "잔액: ${String.format("%d", accountbalance)} 원"
+        calculationEtcTextView.text = "잔액: ${String.format("%d", etcbalance)} 원"
     }
 }

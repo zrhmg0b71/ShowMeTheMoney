@@ -21,7 +21,7 @@ import java.util.Calendar
 class MonthlyActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
-    val usageDataList = mutableListOf<usageDataModel>()
+    val usageDataList = mutableListOf<UsageDataModel>()
     private lateinit var binding: ActivityMonthlyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +47,9 @@ class MonthlyActivity : AppCompatActivity() {
         val database = Firebase.database
         val userInfoRef = database.getReference("usageData")
 
-        usageDataList.add(usageDataModel("09:00 AM", "스타벅스", "#카드", "-4500원"))
-        usageDataList.add(usageDataModel("10:00 AM", "투썸플레이스", "#카드", "-5000원"))
-        usageDataList.add(usageDataModel("11:00 AM", "할리스커피", "#카드", "-3500원"))
+        usageDataList.add(UsageDataModel("09:00 AM", "스타벅스", "#카드", "-4500원"))
+        usageDataList.add(UsageDataModel("10:00 AM", "투썸플레이스", "#카드", "-5000원"))
+        usageDataList.add(UsageDataModel("11:00 AM", "할리스커피", "#카드", "-3500원"))
 
         //DB가 JSON 트리 형식으로 되어 있음
         //유저 정보를 담은 데이터 클래스를 현재 유저의 uid 아래에 setValue로 넣어주면 JSON형식으로 들어감

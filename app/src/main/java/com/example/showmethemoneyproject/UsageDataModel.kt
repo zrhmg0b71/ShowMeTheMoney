@@ -1,6 +1,6 @@
 package com.example.showmethemoneyproject
 
-data class usageDataModel (
+data class UsageDataModel (
     val time : String = "",
     val location : String = "",
     val method : String = "",
