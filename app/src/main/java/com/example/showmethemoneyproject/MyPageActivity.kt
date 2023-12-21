@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.NumberPicker
+import android.widget.Toast
 import com.example.showmethemoneyproject.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -119,8 +120,12 @@ class MyPageActivity : AppCompatActivity() {
             }
         }
 
-        val intent1 = Intent(this, MainActivity::class.java)
-        binding.logout.setOnClickListener{startActivity(intent1)}
+        binding.logout.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(this, "로그아웃 완료", Toast.LENGTH_LONG).show()
+        }
     }
     private fun showCustomDatePickerDialog(callback:(year:Int,month:Int)->Unit) {
         val calendar = Calendar.getInstance()
