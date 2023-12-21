@@ -8,10 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.NumberPicker
 import android.widget.Toast
-<<<<<<< HEAD
-import com.example.showmethemoneyproject.databinding.ActivityMonthlyBinding
-=======
->>>>>>> 388f9a58bb20fd4d50855be6b3cc26732b2f5739
 import com.example.showmethemoneyproject.databinding.ActivityMyPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
